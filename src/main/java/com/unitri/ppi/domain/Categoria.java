@@ -19,18 +19,21 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author curso
+ * @author guilherme
  */
 @Entity
 @Table(name = "Categoria")
+@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Categoria.findAll", query = "SELECT c FROM Categoria c"),
-    @NamedQuery(name = "Categoria.findByIdCategoria", query = "SELECT c FROM Categoria c WHERE c.idCategoria = :idCategoria"),
-    @NamedQuery(name = "Categoria.findByPreco", query = "SELECT c FROM Categoria c WHERE c.preco = :preco"),
-    @NamedQuery(name = "Categoria.findByDescricao", query = "SELECT c FROM Categoria c WHERE c.descricao = :descricao")})
+    @NamedQuery(name = "Categoria.findAll", query = "SELECT c FROM Categoria c")
+    , @NamedQuery(name = "Categoria.findByIdCategoria", query = "SELECT c FROM Categoria c WHERE c.idCategoria = :idCategoria")
+    , @NamedQuery(name = "Categoria.findByPreco", query = "SELECT c FROM Categoria c WHERE c.preco = :preco")
+    , @NamedQuery(name = "Categoria.findByDescricao", query = "SELECT c FROM Categoria c WHERE c.descricao = :descricao")})
 public class Categoria implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -84,6 +87,7 @@ public class Categoria implements Serializable {
         this.descricao = descricao;
     }
 
+    @XmlTransient
     public List<Veiculo> getVeiculoList() {
         return veiculoList;
     }
@@ -114,7 +118,7 @@ public class Categoria implements Serializable {
 
     @Override
     public String toString() {
-        return "com.ppi2.avaliacao.Categoria[ idCategoria=" + idCategoria + " ]";
+        return "com.curso.entidades.Categoria[ idCategoria=" + idCategoria + " ]";
     }
     
 }

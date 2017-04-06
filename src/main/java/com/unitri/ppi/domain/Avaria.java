@@ -19,17 +19,20 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author curso
+ * @author guilherme
  */
 @Entity
 @Table(name = "Avaria")
+@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Avaria.findAll", query = "SELECT a FROM Avaria a"),
-    @NamedQuery(name = "Avaria.findByIdAvaria", query = "SELECT a FROM Avaria a WHERE a.idAvaria = :idAvaria"),
-    @NamedQuery(name = "Avaria.findByDescricao", query = "SELECT a FROM Avaria a WHERE a.descricao = :descricao")})
+    @NamedQuery(name = "Avaria.findAll", query = "SELECT a FROM Avaria a")
+    , @NamedQuery(name = "Avaria.findByIdAvaria", query = "SELECT a FROM Avaria a WHERE a.idAvaria = :idAvaria")
+    , @NamedQuery(name = "Avaria.findByDescricao", query = "SELECT a FROM Avaria a WHERE a.descricao = :descricao")})
 public class Avaria implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -41,7 +44,7 @@ public class Avaria implements Serializable {
     @Basic(optional = false)
     @Column(name = "descricao")
     private String descricao;
-    @JoinTable(name = "locacao_avaria", joinColumns = {
+    @JoinTable(name = "Locacao_Avaria", joinColumns = {
         @JoinColumn(name = "idAvaria", referencedColumnName = "idAvaria")}, inverseJoinColumns = {
         @JoinColumn(name = "idLocacao", referencedColumnName = "idLocacao")})
     @ManyToMany
@@ -75,6 +78,7 @@ public class Avaria implements Serializable {
         this.descricao = descricao;
     }
 
+    @XmlTransient
     public List<Locacao> getLocacaoList() {
         return locacaoList;
     }
@@ -105,7 +109,7 @@ public class Avaria implements Serializable {
 
     @Override
     public String toString() {
-        return "com.ppi2.avaliacao.Avaria[ idAvaria=" + idAvaria + " ]";
+        return "com.curso.entidades.Avaria[ idAvaria=" + idAvaria + " ]";
     }
     
 }

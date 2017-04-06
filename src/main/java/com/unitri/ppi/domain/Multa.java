@@ -19,18 +19,21 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author curso
+ * @author guilherme
  */
 @Entity
 @Table(name = "Multa")
+@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Multa.findAll", query = "SELECT m FROM Multa m"),
-    @NamedQuery(name = "Multa.findByIdMulta", query = "SELECT m FROM Multa m WHERE m.idMulta = :idMulta"),
-    @NamedQuery(name = "Multa.findByDescricao", query = "SELECT m FROM Multa m WHERE m.descricao = :descricao"),
-    @NamedQuery(name = "Multa.findByValor", query = "SELECT m FROM Multa m WHERE m.valor = :valor")})
+    @NamedQuery(name = "Multa.findAll", query = "SELECT m FROM Multa m")
+    , @NamedQuery(name = "Multa.findByIdMulta", query = "SELECT m FROM Multa m WHERE m.idMulta = :idMulta")
+    , @NamedQuery(name = "Multa.findByDescricao", query = "SELECT m FROM Multa m WHERE m.descricao = :descricao")
+    , @NamedQuery(name = "Multa.findByValor", query = "SELECT m FROM Multa m WHERE m.valor = :valor")})
 public class Multa implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -88,6 +91,7 @@ public class Multa implements Serializable {
         this.valor = valor;
     }
 
+    @XmlTransient
     public List<Locacao> getLocacaoList() {
         return locacaoList;
     }
@@ -126,7 +130,7 @@ public class Multa implements Serializable {
 
     @Override
     public String toString() {
-        return "com.ppi2.avaliacao.Multa[ idMulta=" + idMulta + " ]";
+        return "com.curso.entidades.Multa[ idMulta=" + idMulta + " ]";
     }
     
 }

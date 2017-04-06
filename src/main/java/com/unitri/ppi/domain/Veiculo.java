@@ -20,19 +20,22 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author curso
+ * @author guilherme
  */
 @Entity
 @Table(name = "Veiculo")
+@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Veiculo.findAll", query = "SELECT v FROM Veiculo v"),
-    @NamedQuery(name = "Veiculo.findByIdVeiculo", query = "SELECT v FROM Veiculo v WHERE v.idVeiculo = :idVeiculo"),
-    @NamedQuery(name = "Veiculo.findByMarca", query = "SELECT v FROM Veiculo v WHERE v.marca = :marca"),
-    @NamedQuery(name = "Veiculo.findByPlaca", query = "SELECT v FROM Veiculo v WHERE v.placa = :placa"),
-    @NamedQuery(name = "Veiculo.findByModelo", query = "SELECT v FROM Veiculo v WHERE v.modelo = :modelo")})
+    @NamedQuery(name = "Veiculo.findAll", query = "SELECT v FROM Veiculo v")
+    , @NamedQuery(name = "Veiculo.findByIdVeiculo", query = "SELECT v FROM Veiculo v WHERE v.idVeiculo = :idVeiculo")
+    , @NamedQuery(name = "Veiculo.findByMarca", query = "SELECT v FROM Veiculo v WHERE v.marca = :marca")
+    , @NamedQuery(name = "Veiculo.findByPlaca", query = "SELECT v FROM Veiculo v WHERE v.placa = :placa")
+    , @NamedQuery(name = "Veiculo.findByModelo", query = "SELECT v FROM Veiculo v WHERE v.modelo = :modelo")})
 public class Veiculo implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -50,13 +53,11 @@ public class Veiculo implements Serializable {
     @Basic(optional = false)
     @Column(name = "modelo")
     private String modelo;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVeiculo")
+    private List<Locacao> locacaoList;
     @JoinColumn(name = "idCategoria", referencedColumnName = "idCategoria")
     @ManyToOne(optional = false)
     private Categoria idCategoria;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVeiculo")
-    private List<Multa> multaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVeiculo")
-    private List<Locacao> locacaoList;
 
     public Veiculo() {
     }
@@ -104,28 +105,21 @@ public class Veiculo implements Serializable {
         this.modelo = modelo;
     }
 
-    public Categoria getIdCategoria() {
-        return idCategoria;
-    }
-
-    public void setIdCategoria(Categoria idCategoria) {
-        this.idCategoria = idCategoria;
-    }
-
-    public List<Multa> getMultaList() {
-        return multaList;
-    }
-
-    public void setMultaList(List<Multa> multaList) {
-        this.multaList = multaList;
-    }
-
+    @XmlTransient
     public List<Locacao> getLocacaoList() {
         return locacaoList;
     }
 
     public void setLocacaoList(List<Locacao> locacaoList) {
         this.locacaoList = locacaoList;
+    }
+
+    public Categoria getIdCategoria() {
+        return idCategoria;
+    }
+
+    public void setIdCategoria(Categoria idCategoria) {
+        this.idCategoria = idCategoria;
     }
 
     @Override
@@ -150,7 +144,7 @@ public class Veiculo implements Serializable {
 
     @Override
     public String toString() {
-        return "com.ppi2.avaliacao.Veiculo[ idVeiculo=" + idVeiculo + " ]";
+        return "com.curso.entidades.Veiculo[ idVeiculo=" + idVeiculo + " ]";
     }
     
 }

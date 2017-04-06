@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.unitri.ppi.domain.Categoria;
 import com.unitri.ppi.domain.Locacao;
-import com.unitri.ppi.domain.Multa;
 import com.unitri.ppi.domain.Veiculo;
 import org.springframework.hateoas.ResourceSupport;
 
@@ -24,11 +23,8 @@ public class VeiculoRepresentation extends ResourceSupport {
     @JsonInclude(Include.NON_NULL)
     private String modelo;
 
-    @JsonInclude
+    @JsonInclude(Include.NON_NULL)
     private Categoria idCategoria;
-
-    @JsonInclude
-    private List<Multa> multaList;
 
     @JsonInclude
     private List<Locacao> locacaoList;
@@ -36,13 +32,12 @@ public class VeiculoRepresentation extends ResourceSupport {
     public VeiculoRepresentation() {
     }
 
-    public VeiculoRepresentation(Integer idVeiculo, String marca, String placa, String modelo, Categoria idCategoria, List<Multa> multaList, List<Locacao> locacaoList) {
+    public VeiculoRepresentation(Integer idVeiculo, String marca, String placa, String modelo, Categoria idCategoria, List<Locacao> locacaoList) {
         this.idVeiculo = idVeiculo;
         this.marca = marca;
         this.placa = placa;
         this.modelo = modelo;
         this.idCategoria = idCategoria;
-        this.multaList = multaList;
         this.locacaoList = locacaoList;
     }
 
@@ -52,7 +47,6 @@ public class VeiculoRepresentation extends ResourceSupport {
         this.placa = veiculo.getPlaca();
         this.modelo = veiculo.getModelo();
         this.idCategoria = veiculo.getIdCategoria();
-        this.multaList = veiculo.getMultaList();
         this.locacaoList = veiculo.getLocacaoList();
     }
 
@@ -64,7 +58,6 @@ public class VeiculoRepresentation extends ResourceSupport {
         veiculo.setPlaca(representation.getPlaca());
         veiculo.setModelo(representation.getModelo());
         veiculo.setIdCategoria(representation.getIdCategoria());
-        veiculo.setMultaList(veiculo.getMultaList());
         veiculo.setLocacaoList(representation.getLocacaoList());
 
         return veiculo;
@@ -108,14 +101,6 @@ public class VeiculoRepresentation extends ResourceSupport {
 
     public void setIdCategoria(Categoria idCategoria) {
         this.idCategoria = idCategoria;
-    }
-
-    public List<Multa> getMultaList() {
-        return multaList;
-    }
-
-    public void setMultaList(List<Multa> multaList) {
-        this.multaList = multaList;
     }
 
     public List<Locacao> getLocacaoList() {

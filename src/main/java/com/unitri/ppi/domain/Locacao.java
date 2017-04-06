@@ -23,17 +23,20 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author curso
+ * @author guilherme
  */
 @Entity
 @Table(name = "Locacao")
+@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Locacao.findAll", query = "SELECT l FROM Locacao l"),
-    @NamedQuery(name = "Locacao.findByIdLocacao", query = "SELECT l FROM Locacao l WHERE l.idLocacao = :idLocacao"),
-    @NamedQuery(name = "Locacao.findByDataLocacao", query = "SELECT l FROM Locacao l WHERE l.dataLocacao = :dataLocacao")})
+    @NamedQuery(name = "Locacao.findAll", query = "SELECT l FROM Locacao l")
+    , @NamedQuery(name = "Locacao.findByIdLocacao", query = "SELECT l FROM Locacao l WHERE l.idLocacao = :idLocacao")
+    , @NamedQuery(name = "Locacao.findByDataLocacao", query = "SELECT l FROM Locacao l WHERE l.dataLocacao = :dataLocacao")})
 public class Locacao implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -45,13 +48,13 @@ public class Locacao implements Serializable {
     @Column(name = "data_locacao")
     @Temporal(TemporalType.DATE)
     private Date dataLocacao;
-    @JoinTable(name = "locacao_multa", joinColumns = {
+    @ManyToMany(mappedBy = "locacaoList")
+    private List<Avaria> avariaList;
+    @JoinTable(name = "Locacao_Multa", joinColumns = {
         @JoinColumn(name = "idLocacao", referencedColumnName = "idLocacao")}, inverseJoinColumns = {
         @JoinColumn(name = "idMulta", referencedColumnName = "idMulta")})
     @ManyToMany
     private List<Multa> multaList;
-    @ManyToMany(mappedBy = "locacaoList")
-    private List<Avaria> avariaList;
     @JoinColumn(name = "idCliente", referencedColumnName = "idCliente")
     @ManyToOne(optional = false)
     private Cliente idCliente;
@@ -88,20 +91,22 @@ public class Locacao implements Serializable {
         this.dataLocacao = dataLocacao;
     }
 
-    public List<Multa> getMultaList() {
-        return multaList;
-    }
-
-    public void setMultaList(List<Multa> multaList) {
-        this.multaList = multaList;
-    }
-
+    @XmlTransient
     public List<Avaria> getAvariaList() {
         return avariaList;
     }
 
     public void setAvariaList(List<Avaria> avariaList) {
         this.avariaList = avariaList;
+    }
+
+    @XmlTransient
+    public List<Multa> getMultaList() {
+        return multaList;
+    }
+
+    public void setMultaList(List<Multa> multaList) {
+        this.multaList = multaList;
     }
 
     public Cliente getIdCliente() {
@@ -158,7 +163,7 @@ public class Locacao implements Serializable {
 
     @Override
     public String toString() {
-        return "com.ppi2.avaliacao.Locacao[ idLocacao=" + idLocacao + " ]";
+        return "com.curso.entidades.Locacao[ idLocacao=" + idLocacao + " ]";
     }
     
 }
