@@ -5,6 +5,8 @@
  */
 package com.unitri.ppi.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
@@ -27,28 +29,29 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author guilherme
  */
 @Entity
-@Table(name = "Categoria")
+@Table(name = "categoria")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Categoria.findAll", query = "SELECT c FROM Categoria c")
     , @NamedQuery(name = "Categoria.findByIdCategoria", query = "SELECT c FROM Categoria c WHERE c.idCategoria = :idCategoria")
-    , @NamedQuery(name = "Categoria.findByPreco", query = "SELECT c FROM Categoria c WHERE c.preco = :preco")
-    , @NamedQuery(name = "Categoria.findByDescricao", query = "SELECT c FROM Categoria c WHERE c.descricao = :descricao")})
+    , @NamedQuery(name = "Categoria.findByDescricao", query = "SELECT c FROM Categoria c WHERE c.descricao = :descricao")
+    , @NamedQuery(name = "Categoria.findByPreco", query = "SELECT c FROM Categoria c WHERE c.preco = :preco")})
 public class Categoria implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "idCategoria")
+    @Column(name = "id_categoria")
     private Integer idCategoria;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "preco")
-    private BigDecimal preco;
     @Basic(optional = false)
     @Column(name = "descricao")
     private String descricao;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "preco")
+    private BigDecimal preco;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCategoria")
+    @JsonBackReference
     private List<Veiculo> veiculoList;
 
     public Categoria() {
@@ -71,20 +74,20 @@ public class Categoria implements Serializable {
         this.idCategoria = idCategoria;
     }
 
-    public BigDecimal getPreco() {
-        return preco;
-    }
-
-    public void setPreco(BigDecimal preco) {
-        this.preco = preco;
-    }
-
     public String getDescricao() {
         return descricao;
     }
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public BigDecimal getPreco() {
+        return preco;
+    }
+
+    public void setPreco(BigDecimal preco) {
+        this.preco = preco;
     }
 
     @XmlTransient
@@ -118,7 +121,7 @@ public class Categoria implements Serializable {
 
     @Override
     public String toString() {
-        return "com.curso.entidades.Categoria[ idCategoria=" + idCategoria + " ]";
+        return "com.unitri.ppi.domain.Categoria[ idCategoria=" + idCategoria + " ]";
     }
     
 }

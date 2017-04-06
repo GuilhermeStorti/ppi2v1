@@ -5,6 +5,8 @@
  */
 package com.unitri.ppi.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -27,7 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author guilherme
  */
 @Entity
-@Table(name = "Avaria")
+@Table(name = "avaria")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Avaria.findAll", query = "SELECT a FROM Avaria a")
@@ -39,15 +41,16 @@ public class Avaria implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "idAvaria")
+    @Column(name = "id_avaria")
     private Integer idAvaria;
     @Basic(optional = false)
     @Column(name = "descricao")
     private String descricao;
-    @JoinTable(name = "Locacao_Avaria", joinColumns = {
-        @JoinColumn(name = "idAvaria", referencedColumnName = "idAvaria")}, inverseJoinColumns = {
-        @JoinColumn(name = "idLocacao", referencedColumnName = "idLocacao")})
+    @JoinTable(name = "locacao_avaria", joinColumns = {
+        @JoinColumn(name = "id_avaria", referencedColumnName = "id_avaria")}, inverseJoinColumns = {
+        @JoinColumn(name = "id_locacao", referencedColumnName = "id_locacao")})
     @ManyToMany
+    @JsonBackReference
     private List<Locacao> locacaoList;
 
     public Avaria() {
@@ -109,7 +112,7 @@ public class Avaria implements Serializable {
 
     @Override
     public String toString() {
-        return "com.curso.entidades.Avaria[ idAvaria=" + idAvaria + " ]";
+        return "com.unitri.ppi.domain.Avaria[ idAvaria=" + idAvaria + " ]";
     }
     
 }

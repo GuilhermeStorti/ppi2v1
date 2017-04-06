@@ -22,7 +22,7 @@ import java.util.List;
  */
 @CrossOrigin
 @RestController
-@RequestMapping("/veiculos")
+@RequestMapping("/veiculo")
 public class VeiculoResource {
 
     @Autowired

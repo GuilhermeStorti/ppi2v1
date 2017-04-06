@@ -5,6 +5,8 @@
  */
 package com.unitri.ppi.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -28,36 +30,41 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author guilherme
  */
 @Entity
-@Table(name = "Veiculo")
+@Table(name = "veiculo")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Veiculo.findAll", query = "SELECT v FROM Veiculo v")
     , @NamedQuery(name = "Veiculo.findByIdVeiculo", query = "SELECT v FROM Veiculo v WHERE v.idVeiculo = :idVeiculo")
     , @NamedQuery(name = "Veiculo.findByMarca", query = "SELECT v FROM Veiculo v WHERE v.marca = :marca")
-    , @NamedQuery(name = "Veiculo.findByPlaca", query = "SELECT v FROM Veiculo v WHERE v.placa = :placa")
-    , @NamedQuery(name = "Veiculo.findByModelo", query = "SELECT v FROM Veiculo v WHERE v.modelo = :modelo")})
+    , @NamedQuery(name = "Veiculo.findByModelo", query = "SELECT v FROM Veiculo v WHERE v.modelo = :modelo")
+    , @NamedQuery(name = "Veiculo.findByPlaca", query = "SELECT v FROM Veiculo v WHERE v.placa = :placa")})
 public class Veiculo implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "idVeiculo")
+    @Column(name = "id_veiculo")
     private Integer idVeiculo;
     @Basic(optional = false)
     @Column(name = "marca")
     private String marca;
     @Basic(optional = false)
-    @Column(name = "placa")
-    private String placa;
-    @Basic(optional = false)
     @Column(name = "modelo")
     private String modelo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVeiculo")
-    private List<Locacao> locacaoList;
-    @JoinColumn(name = "idCategoria", referencedColumnName = "idCategoria")
+    @Basic(optional = false)
+    @Column(name = "placa")
+    private String placa;
+    @JoinColumn(name = "id_categoria", referencedColumnName = "id_categoria")
     @ManyToOne(optional = false)
+    @JsonBackReference
     private Categoria idCategoria;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVeiculo")
+    @JsonBackReference
+    private List<Multa> multaList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVeiculo")
+    @JsonBackReference
+    private List<Locacao> locacaoList;
 
     public Veiculo() {
     }
@@ -66,11 +73,11 @@ public class Veiculo implements Serializable {
         this.idVeiculo = idVeiculo;
     }
 
-    public Veiculo(Integer idVeiculo, String marca, String placa, String modelo) {
+    public Veiculo(Integer idVeiculo, String marca, String modelo, String placa) {
         this.idVeiculo = idVeiculo;
         this.marca = marca;
-        this.placa = placa;
         this.modelo = modelo;
+        this.placa = placa;
     }
 
     public Integer getIdVeiculo() {
@@ -89,6 +96,14 @@ public class Veiculo implements Serializable {
         this.marca = marca;
     }
 
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
     public String getPlaca() {
         return placa;
     }
@@ -97,12 +112,21 @@ public class Veiculo implements Serializable {
         this.placa = placa;
     }
 
-    public String getModelo() {
-        return modelo;
+    public Categoria getIdCategoria() {
+        return idCategoria;
     }
 
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
+    public void setIdCategoria(Categoria idCategoria) {
+        this.idCategoria = idCategoria;
+    }
+
+    @XmlTransient
+    public List<Multa> getMultaList() {
+        return multaList;
+    }
+
+    public void setMultaList(List<Multa> multaList) {
+        this.multaList = multaList;
     }
 
     @XmlTransient
@@ -112,14 +136,6 @@ public class Veiculo implements Serializable {
 
     public void setLocacaoList(List<Locacao> locacaoList) {
         this.locacaoList = locacaoList;
-    }
-
-    public Categoria getIdCategoria() {
-        return idCategoria;
-    }
-
-    public void setIdCategoria(Categoria idCategoria) {
-        this.idCategoria = idCategoria;
     }
 
     @Override
@@ -144,7 +160,7 @@ public class Veiculo implements Serializable {
 
     @Override
     public String toString() {
-        return "com.curso.entidades.Veiculo[ idVeiculo=" + idVeiculo + " ]";
+        return "com.unitri.ppi.domain.Veiculo[ idVeiculo=" + idVeiculo + " ]";
     }
     
 }

@@ -5,6 +5,8 @@
  */
 package com.unitri.ppi.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -15,7 +17,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -31,7 +32,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author guilherme
  */
 @Entity
-@Table(name = "Locacao")
+@Table(name = "locacao")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Locacao.findAll", query = "SELECT l FROM Locacao l")
@@ -43,30 +44,33 @@ public class Locacao implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "idLocacao")
+    @Column(name = "id_locacao")
     private Integer idLocacao;
     @Column(name = "data_locacao")
     @Temporal(TemporalType.DATE)
     private Date dataLocacao;
     @ManyToMany(mappedBy = "locacaoList")
-    private List<Avaria> avariaList;
-    @JoinTable(name = "Locacao_Multa", joinColumns = {
-        @JoinColumn(name = "idLocacao", referencedColumnName = "idLocacao")}, inverseJoinColumns = {
-        @JoinColumn(name = "idMulta", referencedColumnName = "idMulta")})
-    @ManyToMany
+    @JsonBackReference
     private List<Multa> multaList;
-    @JoinColumn(name = "idCliente", referencedColumnName = "idCliente")
-    @ManyToOne(optional = false)
-    private Cliente idCliente;
-    @JoinColumn(name = "idFuncionario_cad", referencedColumnName = "idfuncionario")
-    @ManyToOne(optional = false)
-    private Funcionario idFuncionariocad;
-    @JoinColumn(name = "idFuncionario_rec", referencedColumnName = "idfuncionario")
+    @ManyToMany(mappedBy = "locacaoList")
+    @JsonBackReference
+    private List<Avaria> avariaList;
+    @JoinColumn(name = "id_funcionario_rec", referencedColumnName = "idfuncionario")
     @ManyToOne
-    private Funcionario idFuncionariorec;
-    @JoinColumn(name = "idVeiculo", referencedColumnName = "idVeiculo")
+    @JsonBackReference
+    private Funcionario idFuncionarioRec;
+    @JoinColumn(name = "id_veiculo", referencedColumnName = "id_veiculo")
     @ManyToOne(optional = false)
+    @JsonBackReference
     private Veiculo idVeiculo;
+    @JoinColumn(name = "id_funcionario_cad", referencedColumnName = "idfuncionario")
+    @ManyToOne(optional = false)
+    @JsonBackReference
+    private Funcionario idFuncionarioCad;
+    @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente")
+    @ManyToOne(optional = false)
+    @JsonBackReference
+    private Cliente idCliente;
 
     public Locacao() {
     }
@@ -92,15 +96,6 @@ public class Locacao implements Serializable {
     }
 
     @XmlTransient
-    public List<Avaria> getAvariaList() {
-        return avariaList;
-    }
-
-    public void setAvariaList(List<Avaria> avariaList) {
-        this.avariaList = avariaList;
-    }
-
-    @XmlTransient
     public List<Multa> getMultaList() {
         return multaList;
     }
@@ -109,28 +104,21 @@ public class Locacao implements Serializable {
         this.multaList = multaList;
     }
 
-    public Cliente getIdCliente() {
-        return idCliente;
+    @XmlTransient
+    public List<Avaria> getAvariaList() {
+        return avariaList;
     }
 
-    public void setIdCliente(Cliente idCliente) {
-        this.idCliente = idCliente;
+    public void setAvariaList(List<Avaria> avariaList) {
+        this.avariaList = avariaList;
     }
 
-    public Funcionario getIdFuncionariocad() {
-        return idFuncionariocad;
+    public Funcionario getIdFuncionarioRec() {
+        return idFuncionarioRec;
     }
 
-    public void setIdFuncionariocad(Funcionario idFuncionariocad) {
-        this.idFuncionariocad = idFuncionariocad;
-    }
-
-    public Funcionario getIdFuncionariorec() {
-        return idFuncionariorec;
-    }
-
-    public void setIdFuncionariorec(Funcionario idFuncionariorec) {
-        this.idFuncionariorec = idFuncionariorec;
+    public void setIdFuncionarioRec(Funcionario idFuncionarioRec) {
+        this.idFuncionarioRec = idFuncionarioRec;
     }
 
     public Veiculo getIdVeiculo() {
@@ -139,6 +127,22 @@ public class Locacao implements Serializable {
 
     public void setIdVeiculo(Veiculo idVeiculo) {
         this.idVeiculo = idVeiculo;
+    }
+
+    public Funcionario getIdFuncionarioCad() {
+        return idFuncionarioCad;
+    }
+
+    public void setIdFuncionarioCad(Funcionario idFuncionarioCad) {
+        this.idFuncionarioCad = idFuncionarioCad;
+    }
+
+    public Cliente getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(Cliente idCliente) {
+        this.idCliente = idCliente;
     }
 
     @Override
@@ -163,7 +167,7 @@ public class Locacao implements Serializable {
 
     @Override
     public String toString() {
-        return "com.curso.entidades.Locacao[ idLocacao=" + idLocacao + " ]";
+        return "com.unitri.ppi.domain.Locacao[ idLocacao=" + idLocacao + " ]";
     }
     
 }

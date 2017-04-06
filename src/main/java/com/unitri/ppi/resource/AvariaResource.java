@@ -22,7 +22,7 @@ import java.util.List;
  */
 @CrossOrigin
 @RestController
-@RequestMapping("/avarias")
+@RequestMapping("/avaria")
 public class AvariaResource {
 
     @Autowired

@@ -1,5 +1,6 @@
 package com.unitri.ppi.handler;
 
+import com.unitri.ppi.domain.Funcionario;
 import com.unitri.ppi.exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ public class ResourceExceptionHandler {
     private static final String errorQuatro = "http://erros.teste.com/404";
 
     @ExceptionHandler(AvariaNotFoundException.class)
-    public ResponseEntity<ErrorDetails> handlerVeiculoNotFoundException(AvariaNotFoundException e, HttpServletRequest request) {
+    public ResponseEntity<ErrorDetails> handlerAvariaNotFoundException(AvariaNotFoundException e, HttpServletRequest request) {
         e.printStackTrace();
         ErrorDetails error = new ErrorDetails();
         error.setStatus(404l);
@@ -40,7 +41,7 @@ public class ResourceExceptionHandler {
     }
 
     @ExceptionHandler(CategoriaNotFoundException.class)
-    public ResponseEntity<ErrorDetails> handlerAvariaNotFoundException(CategoriaNotFoundException e, HttpServletRequest request) {
+    public ResponseEntity<ErrorDetails> handlerCategoriaNotFoundException(CategoriaNotFoundException e, HttpServletRequest request) {
         e.printStackTrace();
         ErrorDetails error = new ErrorDetails();
         error.setStatus(404l);
@@ -51,7 +52,7 @@ public class ResourceExceptionHandler {
     }
 
 
-    @ExceptionHandler(AvariaAlreadyExistException.class)
+    @ExceptionHandler(CategoriaAlreadyExistException.class)
     public ResponseEntity<ErrorDetails> handlerCategoriaAlreadyExistException(CategoriaAlreadyExistException e, HttpServletRequest request) {
         e.printStackTrace();
         ErrorDetails error = new ErrorDetails();
@@ -74,7 +75,7 @@ public class ResourceExceptionHandler {
     }
 
 
-    @ExceptionHandler(AvariaAlreadyExistException.class)
+    @ExceptionHandler(ClienteAlreadyExistException.class)
     public ResponseEntity<ErrorDetails> handlerClienteAlreadyExistException(ClienteAlreadyExistException e, HttpServletRequest request) {
         e.printStackTrace();
         ErrorDetails error = new ErrorDetails();
@@ -97,7 +98,7 @@ public class ResourceExceptionHandler {
     }
 
 
-    @ExceptionHandler(AvariaAlreadyExistException.class)
+    @ExceptionHandler(FuncionarioAlreadyExistException.class)
     public ResponseEntity<ErrorDetails> handlerFuncionarioAlreadyExistException(FuncionarioAlreadyExistException e, HttpServletRequest request) {
         e.printStackTrace();
         ErrorDetails error = new ErrorDetails();
@@ -120,7 +121,7 @@ public class ResourceExceptionHandler {
     }
 
 
-    @ExceptionHandler(AvariaAlreadyExistException.class)
+    @ExceptionHandler(LocacaoAlreadyExistException.class)
     public ResponseEntity<ErrorDetails> handlerLocacaoAlreadyExistException(LocacaoAlreadyExistException e, HttpServletRequest request) {
         e.printStackTrace();
         ErrorDetails error = new ErrorDetails();
@@ -143,7 +144,7 @@ public class ResourceExceptionHandler {
     }
 
 
-    @ExceptionHandler(AvariaAlreadyExistException.class)
+    @ExceptionHandler(MultaAlreadyExistException.class)
     public ResponseEntity<ErrorDetails> handlerMultaAlreadyExistException(MultaAlreadyExistException e, HttpServletRequest request) {
         e.printStackTrace();
         ErrorDetails error = new ErrorDetails();

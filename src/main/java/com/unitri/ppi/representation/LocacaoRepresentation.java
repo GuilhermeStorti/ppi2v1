@@ -1,5 +1,6 @@
 package com.unitri.ppi.representation;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.unitri.ppi.domain.*;
@@ -16,20 +17,20 @@ public class LocacaoRepresentation extends ResourceSupport {
     @JsonInclude
     private Date dataLocacao;
 
-    @JsonInclude
+    @JsonIgnore
     private List<Avaria> avariaList;
 
-    @JsonInclude
+    @JsonIgnore
     private List<Multa> multaList;
 
     @JsonInclude(Include.NON_NULL)
     private Cliente idCliente;
 
     @JsonInclude(Include.NON_NULL)
-    private Funcionario idFuncionariocad;
+    private Funcionario idFuncionarioCad;
 
     @JsonInclude
-    private Funcionario idFuncionariorec;
+    private Funcionario idFuncionarioRec;
 
     @JsonInclude(Include.NON_NULL)
     private Veiculo idVeiculo;
@@ -43,8 +44,8 @@ public class LocacaoRepresentation extends ResourceSupport {
         this.avariaList = avariaList;
         this.multaList = multaList;
         this.idCliente = idCliente;
-        this.idFuncionariocad = idFuncionariocad;
-        this.idFuncionariorec = idFuncionariorec;
+        this.idFuncionarioCad = idFuncionariocad;
+        this.idFuncionarioRec = idFuncionariorec;
         this.idVeiculo = idVeiculo;
     }
 
@@ -54,8 +55,8 @@ public class LocacaoRepresentation extends ResourceSupport {
         this.avariaList = locacao.getAvariaList();
         this.multaList = locacao.getMultaList();
         this.idCliente = locacao.getIdCliente();
-        this.idFuncionariocad = locacao.getIdFuncionariocad();
-        this.idFuncionariorec = locacao.getIdFuncionariorec();
+        this.idFuncionarioCad = locacao.getIdFuncionarioCad();
+        this.idFuncionarioRec = locacao.getIdFuncionarioRec();
         this.idVeiculo = locacao.getIdVeiculo();
     }
 
@@ -67,8 +68,8 @@ public class LocacaoRepresentation extends ResourceSupport {
         locacao.setAvariaList(representation.getAvariaList());
         locacao.setMultaList(representation.getMultaList());
         locacao.setIdCliente(representation.getIdCliente());
-        locacao.setIdFuncionariocad(representation.getIdFuncionariocad());
-        locacao.setIdFuncionariorec(locacao.getIdFuncionariorec());
+        locacao.setIdFuncionarioCad(representation.getIdFuncionarioCad());
+        locacao.setIdFuncionarioRec(locacao.getIdFuncionarioRec());
         locacao.setIdVeiculo(locacao.getIdVeiculo());
 
         return locacao;
@@ -114,20 +115,20 @@ public class LocacaoRepresentation extends ResourceSupport {
         this.idCliente = idCliente;
     }
 
-    public Funcionario getIdFuncionariocad() {
-        return idFuncionariocad;
+    public Funcionario getIdFuncionarioCad() {
+        return idFuncionarioCad;
     }
 
-    public void setIdFuncionariocad(Funcionario idFuncionariocad) {
-        this.idFuncionariocad = idFuncionariocad;
+    public void setIdFuncionarioCad(Funcionario idFuncionarioCad) {
+        this.idFuncionarioCad = idFuncionarioCad;
     }
 
-    public Funcionario getIdFuncionariorec() {
-        return idFuncionariorec;
+    public Funcionario getIdFuncionarioRec() {
+        return idFuncionarioRec;
     }
 
-    public void setIdFuncionariorec(Funcionario idFuncionariorec) {
-        this.idFuncionariorec = idFuncionariorec;
+    public void setIdFuncionarioRec(Funcionario idFuncionarioRec) {
+        this.idFuncionarioRec = idFuncionarioRec;
     }
 
     public Veiculo getIdVeiculo() {

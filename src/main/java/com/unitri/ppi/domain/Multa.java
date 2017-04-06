@@ -5,6 +5,8 @@
  */
 package com.unitri.ppi.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -14,6 +16,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -27,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author guilherme
  */
 @Entity
-@Table(name = "Multa")
+@Table(name = "multa")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Multa.findAll", query = "SELECT m FROM Multa m")
@@ -40,7 +43,7 @@ public class Multa implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "idMulta")
+    @Column(name = "id_multa")
     private Integer idMulta;
     @Basic(optional = false)
     @Column(name = "descricao")
@@ -48,10 +51,15 @@ public class Multa implements Serializable {
     @Basic(optional = false)
     @Column(name = "valor")
     private double valor;
-    @ManyToMany(mappedBy = "multaList")
+    @JoinTable(name = "locacao_multa", joinColumns = {
+        @JoinColumn(name = "id_multa", referencedColumnName = "id_multa")}, inverseJoinColumns = {
+        @JoinColumn(name = "id_locacao", referencedColumnName = "id_locacao")})
+    @ManyToMany
+    @JsonBackReference
     private List<Locacao> locacaoList;
-    @JoinColumn(name = "idVeiculo", referencedColumnName = "idVeiculo")
+    @JoinColumn(name = "id_veiculo", referencedColumnName = "id_veiculo")
     @ManyToOne(optional = false)
+    @JsonBackReference
     private Veiculo idVeiculo;
 
     public Multa() {
@@ -130,7 +138,7 @@ public class Multa implements Serializable {
 
     @Override
     public String toString() {
-        return "com.curso.entidades.Multa[ idMulta=" + idMulta + " ]";
+        return "com.unitri.ppi.domain.Multa[ idMulta=" + idMulta + " ]";
     }
     
 }

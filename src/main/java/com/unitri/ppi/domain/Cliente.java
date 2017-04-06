@@ -5,6 +5,8 @@
  */
 package com.unitri.ppi.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -26,37 +28,38 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author guilherme
  */
 @Entity
-@Table(name = "Cliente")
+@Table(name = "cliente")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c")
     , @NamedQuery(name = "Cliente.findByIdCliente", query = "SELECT c FROM Cliente c WHERE c.idCliente = :idCliente")
-    , @NamedQuery(name = "Cliente.findByNome", query = "SELECT c FROM Cliente c WHERE c.nome = :nome")
-    , @NamedQuery(name = "Cliente.findByTelefone", query = "SELECT c FROM Cliente c WHERE c.telefone = :telefone")
-    , @NamedQuery(name = "Cliente.findByCpf", query = "SELECT c FROM Cliente c WHERE c.cpf = :cpf")
     , @NamedQuery(name = "Cliente.findByCnh", query = "SELECT c FROM Cliente c WHERE c.cnh = :cnh")
-    , @NamedQuery(name = "Cliente.findBySituacao", query = "SELECT c FROM Cliente c WHERE c.situacao = :situacao")})
+    , @NamedQuery(name = "Cliente.findByCpf", query = "SELECT c FROM Cliente c WHERE c.cpf = :cpf")
+    , @NamedQuery(name = "Cliente.findByNome", query = "SELECT c FROM Cliente c WHERE c.nome = :nome")
+    , @NamedQuery(name = "Cliente.findBySituacao", query = "SELECT c FROM Cliente c WHERE c.situacao = :situacao")
+    , @NamedQuery(name = "Cliente.findByTelefone", query = "SELECT c FROM Cliente c WHERE c.telefone = :telefone")})
 public class Cliente implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "idCliente")
+    @Column(name = "id_cliente")
     private Integer idCliente;
+    @Column(name = "cnh")
+    private String cnh;
+    @Column(name = "cpf")
+    private String cpf;
     @Basic(optional = false)
     @Column(name = "nome")
     private String nome;
-    @Column(name = "telefone")
-    private String telefone;
-    @Column(name = "cpf")
-    private String cpf;
-    @Column(name = "cnh")
-    private String cnh;
     @Basic(optional = false)
     @Column(name = "situacao")
     private Character situacao;
+    @Column(name = "telefone")
+    private String telefone;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCliente")
+    @JsonBackReference
     private List<Locacao> locacaoList;
 
     public Cliente() {
@@ -80,20 +83,12 @@ public class Cliente implements Serializable {
         this.idCliente = idCliente;
     }
 
-    public String getNome() {
-        return nome;
+    public String getCnh() {
+        return cnh;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public void setCnh(String cnh) {
+        this.cnh = cnh;
     }
 
     public String getCpf() {
@@ -104,12 +99,12 @@ public class Cliente implements Serializable {
         this.cpf = cpf;
     }
 
-    public String getCnh() {
-        return cnh;
+    public String getNome() {
+        return nome;
     }
 
-    public void setCnh(String cnh) {
-        this.cnh = cnh;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public Character getSituacao() {
@@ -118,6 +113,14 @@ public class Cliente implements Serializable {
 
     public void setSituacao(Character situacao) {
         this.situacao = situacao;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
     @XmlTransient
@@ -151,7 +154,7 @@ public class Cliente implements Serializable {
 
     @Override
     public String toString() {
-        return "com.curso.entidades.Cliente[ idCliente=" + idCliente + " ]";
+        return "com.unitri.ppi.domain.Cliente[ idCliente=" + idCliente + " ]";
     }
     
 }

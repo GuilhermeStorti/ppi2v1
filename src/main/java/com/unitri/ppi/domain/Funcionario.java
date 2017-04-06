@@ -5,6 +5,8 @@
  */
 package com.unitri.ppi.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -29,17 +31,17 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author guilherme
  */
 @Entity
-@Table(name = "Funcionario")
+@Table(name = "funcionario")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Funcionario.findAll", query = "SELECT f FROM Funcionario f")
     , @NamedQuery(name = "Funcionario.findByIdfuncionario", query = "SELECT f FROM Funcionario f WHERE f.idfuncionario = :idfuncionario")
+    , @NamedQuery(name = "Funcionario.findByCpf", query = "SELECT f FROM Funcionario f WHERE f.cpf = :cpf")
+    , @NamedQuery(name = "Funcionario.findByDataNascimento", query = "SELECT f FROM Funcionario f WHERE f.dataNascimento = :dataNascimento")
     , @NamedQuery(name = "Funcionario.findByMatricula", query = "SELECT f FROM Funcionario f WHERE f.matricula = :matricula")
     , @NamedQuery(name = "Funcionario.findByNome", query = "SELECT f FROM Funcionario f WHERE f.nome = :nome")
-    , @NamedQuery(name = "Funcionario.findByUsuario", query = "SELECT f FROM Funcionario f WHERE f.usuario = :usuario")
     , @NamedQuery(name = "Funcionario.findBySenha", query = "SELECT f FROM Funcionario f WHERE f.senha = :senha")
-    , @NamedQuery(name = "Funcionario.findByCpf", query = "SELECT f FROM Funcionario f WHERE f.cpf = :cpf")
-    , @NamedQuery(name = "Funcionario.findByDataNascimento", query = "SELECT f FROM Funcionario f WHERE f.dataNascimento = :dataNascimento")})
+    , @NamedQuery(name = "Funcionario.findByUsuario", query = "SELECT f FROM Funcionario f WHERE f.usuario = :usuario")})
 public class Funcionario implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -49,27 +51,29 @@ public class Funcionario implements Serializable {
     @Column(name = "idfuncionario")
     private Integer idfuncionario;
     @Basic(optional = false)
-    @Column(name = "matricula")
-    private String matricula;
-    @Basic(optional = false)
-    @Column(name = "nome")
-    private String nome;
-    @Basic(optional = false)
-    @Column(name = "usuario")
-    private String usuario;
-    @Basic(optional = false)
-    @Column(name = "senha")
-    private String senha;
-    @Basic(optional = false)
     @Column(name = "cpf")
     private String cpf;
     @Basic(optional = false)
     @Column(name = "data_nascimento")
     @Temporal(TemporalType.DATE)
     private Date dataNascimento;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFuncionariocad")
+    @Basic(optional = false)
+    @Column(name = "matricula")
+    private String matricula;
+    @Basic(optional = false)
+    @Column(name = "nome")
+    private String nome;
+    @Basic(optional = false)
+    @Column(name = "senha")
+    private String senha;
+    @Basic(optional = false)
+    @Column(name = "usuario")
+    private String usuario;
+    @OneToMany(mappedBy = "idFuncionarioRec")
+    @JsonBackReference
     private List<Locacao> locacaoList;
-    @OneToMany(mappedBy = "idFuncionariorec")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFuncionarioCad")
+    @JsonBackReference
     private List<Locacao> locacaoList1;
 
     public Funcionario() {
@@ -79,14 +83,14 @@ public class Funcionario implements Serializable {
         this.idfuncionario = idfuncionario;
     }
 
-    public Funcionario(Integer idfuncionario, String matricula, String nome, String usuario, String senha, String cpf, Date dataNascimento) {
+    public Funcionario(Integer idfuncionario, String cpf, Date dataNascimento, String matricula, String nome, String senha, String usuario) {
         this.idfuncionario = idfuncionario;
-        this.matricula = matricula;
-        this.nome = nome;
-        this.usuario = usuario;
-        this.senha = senha;
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
+        this.matricula = matricula;
+        this.nome = nome;
+        this.senha = senha;
+        this.usuario = usuario;
     }
 
     public Integer getIdfuncionario() {
@@ -95,6 +99,22 @@ public class Funcionario implements Serializable {
 
     public void setIdfuncionario(Integer idfuncionario) {
         this.idfuncionario = idfuncionario;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public Date getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(Date dataNascimento) {
+        this.dataNascimento = dataNascimento;
     }
 
     public String getMatricula() {
@@ -113,14 +133,6 @@ public class Funcionario implements Serializable {
         this.nome = nome;
     }
 
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
     public String getSenha() {
         return senha;
     }
@@ -129,20 +141,12 @@ public class Funcionario implements Serializable {
         this.senha = senha;
     }
 
-    public String getCpf() {
-        return cpf;
+    public String getUsuario() {
+        return usuario;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public Date getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(Date dataNascimento) {
-        this.dataNascimento = dataNascimento;
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
     @XmlTransient
@@ -185,7 +189,7 @@ public class Funcionario implements Serializable {
 
     @Override
     public String toString() {
-        return "com.curso.entidades.Funcionario[ idfuncionario=" + idfuncionario + " ]";
+        return "com.unitri.ppi.domain.Funcionario[ idfuncionario=" + idfuncionario + " ]";
     }
     
 }

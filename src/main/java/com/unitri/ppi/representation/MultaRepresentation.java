@@ -1,5 +1,6 @@
 package com.unitri.ppi.representation;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.unitri.ppi.domain.*;
@@ -19,7 +20,7 @@ public class MultaRepresentation extends ResourceSupport {
     @JsonInclude(Include.NON_NULL)
     private double valor;
 
-    @JsonInclude
+    @JsonIgnore
     private List<Locacao> locacaoList;
 
     @JsonInclude(Include.NON_NULL)

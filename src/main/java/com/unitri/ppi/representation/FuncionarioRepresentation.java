@@ -1,5 +1,6 @@
 package com.unitri.ppi.representation;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.unitri.ppi.domain.Funcionario;
@@ -34,7 +35,7 @@ public class FuncionarioRepresentation extends ResourceSupport {
     @JsonInclude(Include.NON_NULL)
     private Date dataNascimento;
 
-    @JsonInclude
+    @JsonIgnore
     private List<Locacao> locacaoList;
 
     public FuncionarioRepresentation() {

@@ -1,5 +1,6 @@
 package com.unitri.ppi.representation;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.unitri.ppi.domain.Categoria;
@@ -26,7 +27,7 @@ public class VeiculoRepresentation extends ResourceSupport {
     @JsonInclude(Include.NON_NULL)
     private Categoria idCategoria;
 
-    @JsonInclude
+    @JsonIgnore
     private List<Locacao> locacaoList;
 
     public VeiculoRepresentation() {
