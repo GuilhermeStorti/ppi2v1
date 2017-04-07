@@ -1,7 +1,9 @@
 package com.unitri.ppi.resource;
 
 
+import com.unitri.ppi.domain.Avaria;
 import com.unitri.ppi.domain.Locacao;
+import com.unitri.ppi.representation.AvariaRepresentation;
 import com.unitri.ppi.representation.LocacaoRepresentation;
 import com.unitri.ppi.service.LocacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,5 +69,25 @@ public class LocacaoResource {
         locacaoService.delete(id);
         return ResponseEntity.ok().build();
     }
+
+
+
+
+    @RequestMapping(value = "/{id}/avarias", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody HttpEntity<List<AvariaRepresentation>> listAvariasByLocacaoll(@PathVariable("id") Integer id) {
+        Locacao locacao = locacaoService.findById(id);
+
+        List<Avaria> avarias = locacao.getAvariaList();
+        List<AvariaRepresentation> representation = new ArrayList<>();
+        for (Avaria t : avarias) {
+            representation.add(new AvariaRepresentation(t));
+        }
+        return ResponseEntity.ok(representation);
+
+
+    }
+
+
+
 
 }
