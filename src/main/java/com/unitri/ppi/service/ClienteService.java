@@ -34,6 +34,10 @@ public class ClienteService {
                 return clienteRepository.findOne( id );
         }
 
+        @Transactional(readOnly = true)
+        public Cliente findByCpf(String cpf){
+                return clienteRepository.findByCpf(cpf);
+        }
 
         @Transactional(readOnly = false)
         public Cliente save(Cliente cliente){

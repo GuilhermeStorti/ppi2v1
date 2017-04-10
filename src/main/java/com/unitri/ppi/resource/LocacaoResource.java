@@ -3,8 +3,10 @@ package com.unitri.ppi.resource;
 
 import com.unitri.ppi.domain.Avaria;
 import com.unitri.ppi.domain.Locacao;
+import com.unitri.ppi.domain.Multa;
 import com.unitri.ppi.representation.AvariaRepresentation;
 import com.unitri.ppi.representation.LocacaoRepresentation;
+import com.unitri.ppi.representation.MultaRepresentation;
 import com.unitri.ppi.service.LocacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -70,9 +72,6 @@ public class LocacaoResource {
         return ResponseEntity.ok().build();
     }
 
-
-
-
     @RequestMapping(value = "/{id}/avarias", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody HttpEntity<List<AvariaRepresentation>> listAvariasByLocacaoll(@PathVariable("id") Integer id) {
         Locacao locacao = locacaoService.findById(id);
@@ -83,11 +82,18 @@ public class LocacaoResource {
             representation.add(new AvariaRepresentation(t));
         }
         return ResponseEntity.ok(representation);
-
-
     }
 
+    @RequestMapping(value = "/{id}/multas", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody HttpEntity<List<MultaRepresentation>> listMultasByLocacao(@PathVariable("id") Integer id) {
+        Locacao locacao = locacaoService.findById(id);
 
-
+        List<Multa> multas = locacao.getMultaList();
+        List<MultaRepresentation> representation = new ArrayList<>();
+        for (Multa t : multas) {
+            representation.add(new MultaRepresentation(t));
+        }
+        return ResponseEntity.ok(representation);
+    }
 
 }

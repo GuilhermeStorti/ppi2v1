@@ -2,7 +2,9 @@ package com.unitri.ppi.resource;
 
 
 import com.unitri.ppi.domain.Categoria;
+import com.unitri.ppi.domain.Veiculo;
 import com.unitri.ppi.representation.CategoriaRepresentation;
+import com.unitri.ppi.representation.VeiculoRepresentation;
 import com.unitri.ppi.service.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -66,6 +68,18 @@ public class CategoriaResource {
     public @ResponseBody HttpEntity<Void> delete(@PathVariable("id") Integer id) {
         categoriaService.delete(id);
         return ResponseEntity.ok().build();
+    }
+
+    @RequestMapping(value = "/{id}/veiculos", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody HttpEntity<List<VeiculoRepresentation>> listVeiculosByCategoria(@PathVariable("id") Integer id) {
+        Categoria categoria = categoriaService.findById(id);
+
+        List<Veiculo> multas = categoria.getVeiculoList();
+        List<VeiculoRepresentation> representation = new ArrayList<>();
+        for (Veiculo t : multas) {
+            representation.add(new VeiculoRepresentation(t));
+        }
+        return ResponseEntity.ok(representation);
     }
 
 }

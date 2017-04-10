@@ -68,4 +68,11 @@ public class ClienteResource {
         return ResponseEntity.ok().build();
     }
 
+    @RequestMapping(value = "/cpf/{cpf}", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody HttpEntity<ClienteRepresentation> findById(@PathVariable("cpf") String cpf) {
+        Cliente cliente = clienteService.findByCpf(cpf);
+        ClienteRepresentation representation = new ClienteRepresentation(cliente);
+        return ResponseEntity.ok(representation);
+    }
+
 }

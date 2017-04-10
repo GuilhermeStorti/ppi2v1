@@ -1,7 +1,9 @@
 package com.unitri.ppi.resource;
 
 
+import com.unitri.ppi.domain.Locacao;
 import com.unitri.ppi.domain.Veiculo;
+import com.unitri.ppi.representation.LocacaoRepresentation;
 import com.unitri.ppi.representation.VeiculoRepresentation;
 import com.unitri.ppi.service.VeiculoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,6 +68,19 @@ public class VeiculoResource {
     public @ResponseBody HttpEntity<Void> delete(@PathVariable("id") Integer id) {
         veiculoService.delete(id);
         return ResponseEntity.ok().build();
+    }
+
+    @RequestMapping(value = "/{id}/" +
+            "", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody HttpEntity<List<LocacaoRepresentation>> listLocacoesByVeiculo(@PathVariable("id") Integer id) {
+        Veiculo veiculo = veiculoService.findById(id);
+
+        List<Locacao> multas = veiculo.getLocacaoList();
+        List<LocacaoRepresentation> representation = new ArrayList<>();
+        for (Locacao t : multas) {
+            representation.add(new LocacaoRepresentation(t));
+        }
+        return ResponseEntity.ok(representation);
     }
 
 }
