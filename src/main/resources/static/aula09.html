@@ -13,7 +13,23 @@
 
         <p>{{nome}}</p>
 
-        <p><input ng-bind="nome"></p>
+        <p><input ng-model="nome"/></p>
+
+        <p><input ng-model="valor1"/></p>
+
+        <p><input ng-model="valor2"/></p>
+
+        <input type="button" ng-click="conta()" value="Contador!"/> 
+
+        <input type="button" ng-click="somar()" value="Soma"/>
+
+        <input type="button" ng-click="subtrair()" value="Subtrai"/>
+
+        <br/>
+
+        Contador: {{contador}} <br/>
+
+        <p>Resultado: {{resultado}}</p>
 
     </div>
 </body>
