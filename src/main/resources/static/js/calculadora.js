@@ -28,7 +28,6 @@ var controlador = moduloCalc.controller("controladorCalc", function($scope) {
 	}
 
     $scope.conta = function(){
-        $scope.contador = $scope.contador + 1;
-        
+        $scope.contador = $scope.contador + 1;        
     }
 });
