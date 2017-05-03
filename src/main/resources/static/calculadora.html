@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora</title>
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
+     <script src="js/calculadora.js"></script>
+</head>
+<body ng-app="moduloCalc">
+	<div ng-controller="controladorCalc">
+		<h2>Angular JS Calculadora</h2>
+
+		<p>Valor 1: <input type="text" ng-model="valor1"></p>
+		<p>Valor 2: <input type="text" ng-model="valor2"></p>
+		
+        <input type="button" ng-click="somar()" value="Soma"/>
+        <input type="button" ng-click="subtrair()" value="Subtrai"/>
+        <input type="button" ng-click="multiplicar()" value="Multiplica"/>
+        <input type="button" ng-click="dividir()" value="Dividi"/>
+
+        <p>Resultado: {{resultado}}</p>
+
+	</div>
+</body>
+</html>
