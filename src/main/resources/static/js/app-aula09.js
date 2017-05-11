@@ -8,7 +8,7 @@ var controlador = modulo1.controller("controlador1", function($scope) {
 
 	$scope.subtrai = function(a, b){return a - b;}
 
-	$scope.multiplica = function(a, b){	return a * b; }
+	$scope.multiplica =  function(a, b){	return a * b; }
 
 	$scope.divide = function(a, b){	return a / b;	}
 
