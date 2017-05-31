@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Veiculos</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
+</head> 
+<body data-ng-app="appVeiculos">
+	<div data-ng-controller="VeiculoCtrl" >
+		<h2>CRUD Veiculos AngularJs</h2>
+		<table>
+			<tr>
+				<td><label>CPF:</label></td>
+				<td><input type="text" data-ng-model="pessoa.cpf" /></td>
+			</tr>
+			<tr>
+				<td><label>Nome:</label></td>
+				<td><input type="text" 
+					data-ng-model="pessoa.nome" /></td>
+			</tr>
+			<tr>
+				<td><label>Endereço:</label></td>
+				<td><input type="text" 
+					data-ng-model="pessoa.endereco" /></td>
+			</tr>
+			<tr>
+				<td><label>Telefone:</label></td>
+				<td><input type="text" 
+					data-ng-model="pessoa.fone" /></td>
+			</tr>			
+		</table>
+		<br/>
+		<table border="1">
+			<tr>
+				<th>CPF</th>
+				<th>Nome</th>
+				<th>Endereço</th>
+				<th>Telefone</th>
+			</tr>
+			<tr data-ng-repeat="pessoa in pessoas">
+				<td 
+				ng-click="seleciona(pessoa)">{{pessoa.cpf}}</td>
+				<td 
+				ng-click="seleciona(pessoa)">{{pessoa.nome}}</td>
+				<td 
+				ng-click="seleciona(pessoa)">{{pessoa.endereco}}</td>
+				<td 
+				ng-click="seleciona(pessoa)">{{pessoa.fone}}</td>
+			</tr>
+		</table>
+	</div>
+</body>
+
+
+</html>

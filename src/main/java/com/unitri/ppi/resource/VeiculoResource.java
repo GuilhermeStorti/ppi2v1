@@ -18,10 +18,6 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
-
-/**
- * Created by guilherme on 13/03/17.
- */
 @CrossOrigin
 @RestController
 @RequestMapping("/veiculo")

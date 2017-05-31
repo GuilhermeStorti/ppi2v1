@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Categorias</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"></script>
+	<script src="js/categorias.js"></script>
+</head> 
+<body ng-app=appCategorias>
+
+	<div ng-controller="ctrlCategorias" >
+	
+		<h2>CRUD Categorias AngularJs</h2>
+		<table>
+			<tr>
+				<td><label>Descrição:</label></td>
+				<td><input type="text" data-ng-model="categoria.descricao" /></td>
+			</tr>
+			<tr>
+				<td><label>Preço:</label></td>
+				<td><input type="text" data-ng-model="categoria.preco" /></td>
+			</tr>						
+		</table>
+		<br/>
+		<div>
+			<button data-ng-click="novo()">Novo</button>
+			<button data-ng-click="salvar()">Salvar</button>
+			<button data-ng-click="deletar()">Deletar</button>
+		</div>
+		<br/>
+		<table border="1">
+			<tr>
+				<th>Id Categoria</th>
+				<th>Preço</th>
+				<th>Descrição</th>				
+			</tr>
+			<tr data-ng-repeat="categoria in categorias">
+				<td ng-click="seleciona(categoria)">{{categoria.idCategoria}}</td>
+				<td ng-click="seleciona(categoria)">{{categoria.preco}}</td>
+				<td ng-click="seleciona(categoria)">{{categoria.descricao}}</td>			
+			</tr>
+		</table>
+	</div>
+</body>
+</html>
