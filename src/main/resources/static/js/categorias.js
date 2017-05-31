@@ -1,4 +1,4 @@
-var appCategorias = angular.module('appCategoria', []);
+var appCategorias = angular.module('appCategorias', []);
 
 var ctrlCategorias = appCategorias.controller('ctrlCategorias', function($scope, $http) {
 	
