@@ -1,21 +1,21 @@
-var appCategorias = angular.module('appCategorias', []);
+var appClientes = angular.module('appClientes', []);
 
-var ctrlCategorias = appCategorias.controller('ctrlCategorias', function($scope, $http) {
+var ctrlClientes = appClientes.controller('ctrlClientes', function($scope, $http) {
 	
-	var url = "http://localhost:8080/ppi2v1/categoria";
+	var url = "http://localhost:8080/ppi2v1/cliente";
 	
 	$scope.mostrar = function()	{
 		$http.get(url).then(
 				function sucesso(response) {
-					$scope.categorias = response.data;
+					$scope.clientes = response.data;
 				}, function erro(response) {
-					alert("ops!! erro na chamda get");					
+					alert("ops!! erro na chamada get cliente");					
 				}
 			)		
 	};
 
 	$scope.salvar = function()	{
-		$http.post(url, $scope.categoria).then(
+		$http.post(url, $scope.cliente).then(
 			function sucesso(response) {
 				$scope.mostrar();
 			}, function erro(response) {
@@ -25,34 +25,34 @@ var ctrlCategorias = appCategorias.controller('ctrlCategorias', function($scope,
 	};
 
 	$scope.update = function(){
-		$http.put(url, $scope.categoria).then(
+		$http.put(url, $scope.cliente).then(
 			function sucesso(response) {
 				$scope.mostrar();
 			},function erro(response) {
-					alert("erro ao salvar");
+					alert("erro ao salvar cliente");
 			}
 		);
 	};
 
 	$scope.deletar = function()	{
-		$http(url + "/" + $scope.categoria.idCategoria).then(
+		$http(url + "/" + $scope.cliente.idCliente).then(
 			function(response) {
 				$scope.mostrar();
 				$scope.novo();
 			},function(error) {
-				alert("erro ao deletar categoria");
+				alert("erro ao deletar cliente");
 			}
 		);
 	};	
 			
 	$scope.novo = function(){
-		$scope.categoria = "";
+		$scope.cliente = "";
 	};		
 
 	$scope.mostrar();
 
-	$scope.seleciona = function(categoria) {
-		$scope.categoria = angular.copy(categoria);	
+	$scope.seleciona = function(cliente) {
+		$scope.cliente = angular.copy(cliente);	
 	};
 
 });

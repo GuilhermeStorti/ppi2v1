@@ -24,8 +24,6 @@ var ctrlCategorias = appCategorias.controller('ctrlCategorias', function($scope,
 		)
 	};
 
-
-
 	$scope.update = function(){
 		$http.put(url, $scope.categoria).then(
 			function sucesso(response) {
@@ -34,9 +32,7 @@ var ctrlCategorias = appCategorias.controller('ctrlCategorias', function($scope,
 					alert("erro ao salvar");
 			}
 		);
-	};			
-
-
+	};
 
 	$scope.deletar = function()	{
 		$http(url + "/" + $scope.categoria.idCategoria).then(
