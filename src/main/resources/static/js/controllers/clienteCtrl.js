@@ -33,24 +33,24 @@ angular.module("appLocadora").controller("clienteCtrl", function ($scope, $http)
     };
 
     $scope.deletar = function()	{
-        $http(url + "/" + $scope.cliente.idCliente).then(
+        $http.delete(url + "/" + $scope.cliente.idCliente).then(
             function(response) {
                 $scope.mostrar();
-                $scope.novo();
+                $scope.limpar();
             },function(error) {
                 alert("erro ao deletar cliente");
             }
         );
     };
 
-    $scope.novo = function(){
-        $scope.cliente = "";
-    };
-
     $scope.mostrar();
 
     $scope.seleciona = function(cliente) {
         $scope.cliente = angular.copy(cliente);
+    };
+
+    $scope.limpar = function () {
+        $scope.cliente = null;
     };
 
 });

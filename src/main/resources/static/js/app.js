@@ -1,1 +1,1 @@
-angular.module("appLocadora", ["ngRoute"]);
+angular.module("appLocadora", ["ngMessages","ngRoute"]);
