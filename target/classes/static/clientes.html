@@ -1,63 +1,135 @@
-<!DOCTYPE html>
-<html>
+<html ng-app="appLocadora" >
 <head>
 <meta charset="UTF-8">
 <title>Cliente</title>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
-<script src="js/clientes.js"></script>
-</head> 
-<body ng-app=appClientes>
+	<!-- Bootstrap 3.3.6 -->
+	<link rel="stylesheet" href="style/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="style/simple-sidebar.css">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
-	<div ng-controller="ctrlClientes" >
-	
-		<h2>CRUD Clientes AngularJs</h2>
-		<table>			
-			<tr>
-				<td><label>Nome:</label></td>
-				<td><input type="text" data-ng-model="cliente.nome" /></td>
-			</tr>	
-			<tr>
-				<td><label>Telefone:</label></td>
-				<td><input type="text" data-ng-model="cliente.telefone" /></td>
-			</tr>
-			<tr>
-				<td><label>CPF:</label></td>
-				<td><input type="text" data-ng-model="cliente.cpf" /></td>
-			</tr>
-			<tr>
-				<td><label>CNH:</label></td>
-				<td><input type="text" data-ng-model="cliente.cnh" /></td>
-			</tr>	
-			<tr>
-				<td><label>Situação:</label></td>
-				<td><input type="text" data-ng-model="cliente.situacao" /></td>
-			</tr>				
-		</table>
-		<br/>
-		<div>
-			<button data-ng-click="novo()">Novo</button>
-			<button data-ng-click="salvar()">Salvar</button>
-			<button data-ng-click="deletar()">Deletar</button>
+	<script src="js/lib/angular.js"></script>
+	<script src="js/lib/angular-messages.js"></script>
+	<script src="js/lib/angular-route.js"></script>
+
+	<script src="js/app.js"></script>
+
+	<script src="js/controllers/clienteCtrl.js"></script>
+
+	<script src="js/config/routeConfig.js"></script>
+
+	<style>
+		.padrao{
+			font-family: 'Open Sans', sans-serif;
+			background-color: #e5e5e5;
+		}
+
+		hr {
+			background-color: #333333;
+			height: 1px;
+			border: 0;
+		}
+	</style>
+</head> 
+<body class="padrao">
+	<div id="wrapper">
+
+		<div ng-include="'view/menu.html'"></div>
+
+		<i href="#menu-toggle" class="fa fa-bars" id="menu-toggle" style="font-size: 2em; margin-left: 5px; margin-top: 5px; color: #122b40"></i>
+
+		<!-- Page Content -->
+		<div id="page-content-wrapper">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-12">
+
+						<h1>Clientes</h1>
+
+						<hr>
+
+						<span class="col-lg-1"></span>
+
+						<div ng-view></div>
+
+						<!--<div class="col-lg-10" ng-controller="clienteCtrl">
+							<table class="table table-striped" >
+								<tr>
+									<th>Id Cliente</th>
+									<th>Nome</th>
+									<th>Telefone</th>
+									<th>CPF</th>
+									<th>CNH</th>
+									<th>Situação</th>
+								</tr>
+								<tr data-ng-repeat="cliente in clientes">
+									<td ng-click="seleciona(cliente)">{{cliente.idCliente}}</td>
+									<td ng-click="seleciona(cliente)">{{cliente.nome}}</td>
+									<td ng-click="seleciona(cliente)">{{cliente.telefone}}</td>
+									<td ng-click="seleciona(cliente)">{{cliente.cpf}}</td>
+									<td ng-click="seleciona(cliente)">{{cliente.cnh}}</td>
+									<td ng-click="seleciona(cliente)">{{cliente.situacao}}</td>
+								</tr>
+							</table>
+						</div>-->
+
+					</div>
+				</div>
+			</div>
 		</div>
-		<br/>
-		<table border="1">
-			<tr>
-				<th>Id Cliente</th>
-				<th>Nome</th>
-				<th>Telefone</th>		
-				<th>CPF</th>
-				<th>CNH</th>
-				<th>Situação</th>		
-			</tr>
-			<tr data-ng-repeat="cliente in clientes">
-				<td ng-click="seleciona(cliente)">{{cliente.idCliente}}</td>
-				<td ng-click="seleciona(cliente)">{{cliente.nome}}</td>
-				<td ng-click="seleciona(cliente)">{{cliente.telefone}}</td>			
-				<td ng-click="seleciona(cliente)">{{cliente.cpf}}</td>
-				<td ng-click="seleciona(cliente)">{{cliente.cnh}}</td>
-				<td ng-click="seleciona(cliente)">{{cliente.situacao}}</td>
-			</tr>
-		</table>
+		<!-- /#page-content-wrapper -->
+
 	</div>
+	<!-- /#wrapper -->
+
+
+	<!--<div class="container fundo" ng-controller="ctrlClientes" >
+
+		<div class="titulo-conteudo row">
+			<h2>Clientes</h2>
+		</div>
+
+		<div class="jumbotron formulario row" >
+			<h2>CRUD Clientes AngularJs</h2>
+			<form class="form-group" style="text-align: left">
+				<label for="nome">Nome</label>
+				<input id="nome" type="text" data-ng-model="cliente.nome"
+					   class="form-control">
+
+				<label for="fone">Telefone</label>
+				<input id="fone" type="text" data-ng-model="cliente.telefone" class="form-control"	>
+
+				<label for="cpf">CPF</label>
+				<input id="cpf" type="text" data-ng-model="cliente.cpf" class="form-control"/>
+
+				<label for="cnh">CNH</label>
+				<input id="cnh" type="text" data-ng-model="cliente.cnh" class="form-control"/>
+
+				<label for="situacao">Situação</label>
+				<input id="situacao" type="text" data-ng-model="cliente.situacao" class="form-control"/>
+
+				<div class="btn-group" style="margin-top: 10px;">
+					<button data-ng-click="novo()" class="btn btn-primary">Novo</button>
+					<button data-ng-click="salvar()" class="btn btn-primary">Salvar</button>
+					<button data-ng-click="deletar()" class="btn btn-primary">Deletar</button>
+				</div>
+			</form>
+
+		</div>
+	</div>-->
+
+	<!-- jQuery -->
+	<script src="js/jquery.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="js/bootstrap.min.js"></script>
+
+	<!-- Menu Toggle Script -->
+	<script>
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+	</script>
 </body>
 </html>

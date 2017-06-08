@@ -1,0 +1,21 @@
+<div class="col-lg-10">
+    teste
+    <table class="table table-striped" >
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Telefone</th>
+            <th>CPF</th>
+            <th>CNH</th>
+            <th>Situação</th>
+        </tr>
+        <tr data-ng-repeat="cliente in clientes">
+            <td ng-click="seleciona(cliente)">{{cliente.idCliente}}</td>
+            <td ng-click="seleciona(cliente)">{{cliente.nome}}</td>
+            <td ng-click="seleciona(cliente)">{{cliente.telefone}}</td>
+            <td ng-click="seleciona(cliente)">{{cliente.cpf}}</td>
+            <td ng-click="seleciona(cliente)">{{cliente.cnh}}</td>
+            <td ng-click="seleciona(cliente)">{{cliente.situacao}}</td>
+        </tr>
+    </table>
+</div>

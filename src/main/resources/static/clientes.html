@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html>
+<html ng-app="appLocadora" >
 <head>
 <meta charset="UTF-8">
 <title>Cliente</title>
@@ -8,8 +7,17 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="style/simple-sidebar.css">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
-	<script src="js/clientes.js"></script>
+
+	<script src="js/lib/angular.js"></script>
+	<script src="js/lib/angular-messages.js"></script>
+	<script src="js/lib/angular-route.js"></script>
+
+	<script src="js/app.js"></script>
+
+	<script src="js/controllers/clienteCtrl.js"></script>
+
+	<script src="js/config/routeConfig.js"></script>
+
 	<style>
 		.padrao{
 			font-family: 'Open Sans', sans-serif;
@@ -23,38 +31,10 @@
 		}
 	</style>
 </head> 
-<body ng-app="appClientes" class="padrao">
+<body class="padrao">
 	<div id="wrapper">
-		<div id="sidebar-wrapper">
-			<ul class="sidebar-nav">
-				<li class="sidebar-brand">
-					<a href="#">
-						<h2>Locadora</h2>
-					</a>
-				</li>
-				<li>
-					<a href="#"><i class="fa fa-users" style="margin-right: 10px"></i>Clientes</a>
-				</li>
-				<li>
-					<a href="#">Shortcuts</a>
-				</li>
-				<li>
-					<a href="#">Overview</a>
-				</li>
-				<li>
-					<a href="#">Events</a>
-				</li>
-				<li>
-					<a href="#">About</a>
-				</li>
-				<li>
-					<a href="#">Services</a>
-				</li>
-				<li>
-					<a href="#">Contact</a>
-				</li>
-			</ul>
-		</div>
+
+		<div ng-include="'view/menu.html'"></div>
 
 		<i href="#menu-toggle" class="fa fa-bars" id="menu-toggle" style="font-size: 2em; margin-left: 5px; margin-top: 5px; color: #122b40"></i>
 
@@ -70,7 +50,9 @@
 
 						<span class="col-lg-1"></span>
 
-						<div class="col-lg-10" ng-controller="ctrlClientes">
+						<div ng-view></div>
+
+						<!--<div class="col-lg-10" ng-controller="clienteCtrl">
 							<table class="table table-striped" >
 								<tr>
 									<th>Id Cliente</th>
@@ -89,7 +71,7 @@
 									<td ng-click="seleciona(cliente)">{{cliente.situacao}}</td>
 								</tr>
 							</table>
-						</div>
+						</div>-->
 
 					</div>
 				</div>
