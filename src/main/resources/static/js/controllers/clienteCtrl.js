@@ -22,8 +22,8 @@ angular.module("appLocadora").controller("clienteCtrl", function ($scope, $http)
         )
     };
 
-    $scope.update = function(){
-        $http.put(url, $scope.cliente).then(
+    $scope.editar = function(){
+        $http.put(url + "/" + $scope.cliente.idCliente, $scope.cliente).then(
             function sucesso(response) {
                 $scope.mostrar();
             },function erro(response) {
