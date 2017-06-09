@@ -1,5 +1,2 @@
-target/
-
-*.class
-
-src/main/resource/applications.properties
+target/*
+.idea/*
