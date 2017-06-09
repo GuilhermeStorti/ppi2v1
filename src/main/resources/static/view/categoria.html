@@ -7,63 +7,47 @@
 <div class="col-lg-10">
 
     <i ng-click="limpar()" class="fa fa-user-plus" style="font-size: 2em; margin-bottom: 10px;"
-       typeof="button" data-toggle="modal" data-target="#modalClienteNovo"
+       typeof="button" data-toggle="modal" data-target="#modalCategoriaNovo"
        data-toggle="tooltip" title="Adicionar"></i>
 
     <table class="table table-striped" >
         <tr>
             <th>Id</th>
-            <th>Nome</th>
-            <th>Telefone</th>
-            <th>CPF</th>
-            <th>CNH</th>
-            <th>Situação</th>
+            <th>Descrição</th>
+            <th>Preço</th>
             <th>#</th>
         </tr>
-        <tr data-ng-repeat="cliente in clientes">
-            <td ng-click="seleciona(cliente)">{{cliente.idCliente}}</td>
-            <td ng-click="seleciona(cliente)">{{cliente.nome}}</td>
-            <td ng-click="seleciona(cliente)">{{cliente.telefone}}</td>
-            <td ng-click="seleciona(cliente)">{{cliente.cpf}}</td>
-            <td ng-click="seleciona(cliente)">{{cliente.cnh}}</td>
-            <td ng-click="seleciona(cliente)">{{cliente.situacao}}</td>
-            <td ng-click="seleciona(cliente)">
-                <i typeof="button" data-toggle="modal" data-target="#modalCliente" class="fa fa-pencil"
+        <tr data-ng-repeat="categoria in categorias">
+            <td ng-click="seleciona(categoria)">{{categoria.idCategoria}}</td>
+            <td ng-click="seleciona(categoria)">{{categoria.descricao}}</td>
+            <td ng-click="seleciona(categoria)">{{categoria.preco}}</td>
+            <td ng-click="seleciona(categoria)">
+                <i typeof="button" data-toggle="modal" data-target="#modalCategoria" class="fa fa-pencil"
                    data-toggle="tooltip" title="Editar"></i>
             </td>
-            <!--<td ng-click="seleciona(cliente)"><i class="fa fa-pencil"></i></td>-->
         </tr>
     </table>
 </div>
 
 <!-- Modal Editar Deletar-->
-<div class="modal fade" id="modalClienteNovo" role="dialog">
+<div class="modal fade" id="modalCategoriaNovo" role="dialog">
     <div class="modal-dialog">
 
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Cliente</h4>
+                <h4 class="modal-title">Categoria</h4>
             </div>
             <div class="modal-body">
 
-                <form class="form-group" style="text-align: left" id="clienteForm">
-                    <label for="nomeN">Nome</label>
-                    <input id="nomeN" type="text" data-ng-model="cliente.nome"
+                <form class="form-group" style="text-align: left" id="categoriaForm">
+                    <label for="descN">Descrição</label>
+                    <input id="descN" type="text" data-ng-model="categoria.descricao"
                            class="form-control" ng-required="true">
 
-                    <label for="foneN">Telefone</label>
-                    <input id="foneN" type="text" data-ng-model="cliente.telefone" class="form-control phone">
-
-                    <label for="cpfN">CPF</label>
-                    <input id="cpfN" type="text" data-ng-model="cliente.cpf" class="form-control cpf"/>
-
-                    <label for="cnhN">CNH</label>
-                    <input id="cnhN" type="text" data-ng-model="cliente.cnh" class="form-control"/>
-
-                    <label for="situacaoN">Situação</label>
-                    <input id="situacaoN" type="text" data-ng-model="cliente.situacao" class="form-control"/>
+                    <label for="precoN">Preço</label>
+                    <input id="precoN" type="text" data-ng-model="categoria.preco" class="form-control money2">
 
                     <div class="btn-group" style="margin-top: 25px; margin-left: 50%; width: 30px; left: -30px;">
                         <button data-ng-click="salvar()" class="btn btn-primary" data-dismiss="modal">Salvar</button>
@@ -77,33 +61,24 @@
 </div>
 
 <!-- Modal Editar Deletar-->
-<div class="modal fade" id="modalCliente" role="dialog">
+<div class="modal fade" id="modalCategoria" role="dialog">
     <div class="modal-dialog">
 
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Cliente</h4>
+                <h4 class="modal-title">Categoria</h4>
             </div>
             <div class="modal-body">
 
                 <form class="form-group" style="text-align: left">
-                    <label for="nome">Nome</label>
-                    <input id="nome" type="text" data-ng-model="cliente.nome"
-                           class="form-control">
+                    <label for="desc">Descrição</label>
+                    <input id="desc" type="text" data-ng-model="categoria.descricao"
+                           class="form-control" ng-required="true">
 
-                    <label for="fone">Telefone</label>
-                    <input id="fone" type="text" data-ng-model="cliente.telefone" class="form-control phone"	>
-
-                    <label for="cpf">CPF</label>
-                    <input id="cpf" type="text" data-ng-model="cliente.cpf" class="form-control cpf"/>
-
-                    <label for="cnh">CNH</label>
-                    <input id="cnh" type="text" data-ng-model="cliente.cnh" class="form-control"/>
-
-                    <label for="situacao">Situação</label>
-                    <input id="situacao" type="text" data-ng-model="cliente.situacao" class="form-control"/>
+                    <label for="preco">Preço</label>
+                    <input id="preco" type="text" data-ng-model="categoria.preco" class="form-control money2">
 
                     <div class="btn-group" style="margin-top: 25px; margin-left: 50%; width: 200px; left: -100px;">
                         <button data-ng-click="novo()" class="btn btn-primary" data-dismiss="modal">Novo</button>

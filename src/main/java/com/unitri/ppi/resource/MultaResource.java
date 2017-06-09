@@ -62,7 +62,7 @@ public class MultaResource {
         return ResponseEntity.noContent().build();
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public @ResponseBody HttpEntity<Void> delete(@PathVariable("id") Integer id) {
         multaService.delete(id);
         return ResponseEntity.ok().build();

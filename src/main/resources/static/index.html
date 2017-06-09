@@ -16,7 +16,8 @@
 
     <script src="js/controllers/clienteCtrl.js"></script>
     <script src="js/controllers/avariaCtrl.js"></script>
-
+    <script src="js/controllers/categoriaCtrl.js"></script>
+    
     <script src="js/config/routeConfig.js"></script>
 
     <script src="js/directives/uiAlertDirective.js"></script>
@@ -81,7 +82,7 @@
         $('.cpf').mask('000.000.000-00', {reverse: true});
         $('.cnpj').mask('00.000.000/0000-00', {reverse: true});
         $('.money').mask('000.000.000.000.000,00', {reverse: true});
-        $('.money2').mask("#.##0,00", {reverse: true});
+        $('.money2').mask("#,##0.00", {reverse: true});
         $('.percent').mask('##0,00%', {reverse: true});
         $('.placeholder').mask("00/00/0000", {placeholder: "__/__/____"});
     });
