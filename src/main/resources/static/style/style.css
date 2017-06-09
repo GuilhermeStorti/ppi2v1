@@ -1,0 +1,17 @@
+.padrao{
+    font-family: 'Open Sans', sans-serif;
+    background-color: #e5e5e5;
+}
+
+hr {
+    background-color: #333333;
+    height: 1px;
+    border: 0;
+}
+
+.menu-button{
+    font-size: 2em !important;
+    margin-left: 5px;
+    margin-top: 5px;
+    color: #122b40;
+}

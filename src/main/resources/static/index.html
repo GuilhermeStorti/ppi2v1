@@ -3,44 +3,34 @@
     <meta charset="UTF-8">
     <title>Locadora</title>
     <!-- Bootstrap 3.3.6 -->
+    <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style/simple-sidebar.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
+    <!--Libs-->
     <script src="js/lib/angular.js"></script>
     <script src="js/lib/angular-messages.js"></script>
     <script src="js/lib/angular-route.js"></script>
 
+    <!--App-->
     <script src="js/app.js"></script>
 
+    <!--Configs-->
+    <script src="js/config/routeConfig.js"></script>
+
+    <!--Controllers-->
     <script src="js/controllers/clienteCtrl.js"></script>
     <script src="js/controllers/avariaCtrl.js"></script>
     <script src="js/controllers/categoriaCtrl.js"></script>
-    
-    <script src="js/config/routeConfig.js"></script>
-
-    <script src="js/directives/uiAlertDirective.js"></script>
-
-    <style>
-        .padrao{
-            font-family: 'Open Sans', sans-serif;
-            background-color: #e5e5e5;
-        }
-
-        hr {
-            background-color: #333333;
-            height: 1px;
-            border: 0;
-        }
-    </style>
 </head>
 <body class="padrao">
 <div id="wrapper">
 
     <div ng-include="'view/menu.html'"></div>
 
-    <i href="#menu-toggle" class="fa fa-bars" id="menu-toggle" style="font-size: 2em; margin-left: 5px; margin-top: 5px; color: #122b40"></i>
+    <i href="#menu-toggle" class="fa fa-bars menu-button" id="menu-toggle"></i>
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
@@ -64,28 +54,10 @@
 <script src="js/lib/jquery.mask.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="js/bootstrap.min.js"></script>
+<script src="js/lib/bootstrap.min.js"></script>
 
-<!-- Menu Toggle Script -->
-<script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-    $(document).ready(function(){
-        $('.date').mask('00/00/0000');
-        $('.time').mask('00:00:00');
-        $('.date_time').mask('00/00/0000 00:00:00');
-        $('.cep').mask('00000-000');
-        $('.phone').mask('0000-0000');
-        $('.mixed').mask('AAA 000-S0S');
-        $('.cpf').mask('000.000.000-00', {reverse: true});
-        $('.cnpj').mask('00.000.000/0000-00', {reverse: true});
-        $('.money').mask('000.000.000.000.000,00', {reverse: true});
-        $('.money2').mask("#,##0.00", {reverse: true});
-        $('.percent').mask('##0,00%', {reverse: true});
-        $('.placeholder').mask("00/00/0000", {placeholder: "__/__/____"});
-    });
-</script>
+<!-- Menu Toggle and Mask Script -->
+<script src="js/style.js"></script>
+
 </body>
 </html>
