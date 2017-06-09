@@ -3,6 +3,10 @@ angular.module("appLocadora").config(function ($routeProvider) {
         templateUrl: "view/cliente.html",
         controller: "clienteCtrl"
     });
+    $routeProvider.when("/avaria", {
+        templateUrl: "view/avaria.html",
+        controller: "avariaCtrl"
+    });
     $routeProvider.when("/categoria", {
         templateUrl: "view/categoria.html",
     });

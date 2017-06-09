@@ -24,10 +24,6 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author guilherme
- */
 @Entity
 @Table(name = "avaria")
 @XmlRootElement
