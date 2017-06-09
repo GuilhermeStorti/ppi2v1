@@ -58,7 +58,7 @@ public class AvariaResource {
         return ResponseEntity.noContent().build();
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public @ResponseBody HttpEntity<Void> delete(@PathVariable("id") Integer id) {
         avariaService.delete(id);
         return ResponseEntity.ok().build();
