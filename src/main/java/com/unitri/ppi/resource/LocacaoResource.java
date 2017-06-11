@@ -59,7 +59,7 @@ public class LocacaoResource {
         return ResponseEntity.created(uri).build();
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public @ResponseBody HttpEntity<Void> update(@RequestBody LocacaoRepresentation representation, @PathVariable("id") Integer id) {
         representation.setIdLocacao(id);
         locacaoService.update(LocacaoRepresentation.build(representation));

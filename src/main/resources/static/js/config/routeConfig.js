@@ -11,5 +11,21 @@ angular.module("appLocadora").config(function ($routeProvider) {
         templateUrl: "view/categoria.html",
         controller: "categoriaCtrl"
     });
+    $routeProvider.when("/funcionario", {
+        templateUrl: "view/funcionario.html",
+        controller: "funcionarioCtrl"
+    });
+    $routeProvider.when("/locacao", {
+        templateUrl: "view/locacao.html",
+        controller: "locacaoCtrl"
+    });
+    $routeProvider.when("/veiculo", {
+        templateUrl: "view/veiculo.html",
+        controller: "veiculoCtrl"
+    });
+    $routeProvider.when("/multa", {
+        templateUrl: "view/multa.html",
+        controller: "multaCtrl"
+    });
     $routeProvider.otherwise({redirectTo: "#"});
 });
