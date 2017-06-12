@@ -41,7 +41,7 @@ public class ClienteService {
 
         @Transactional(readOnly = false)
         public Cliente save(Cliente cliente){
-                if(cliente.getIdCliente() == null && exist( cliente.getIdCliente() )){
+                if(exist( cliente.getIdCliente() )){
                         throw new ClienteAlreadyExistException("Cliente com este id já existe " + cliente.getIdCliente());
                 }
                 return clienteRepository.save(cliente);
@@ -49,7 +49,7 @@ public class ClienteService {
 
         @Transactional(readOnly = false)
         public Cliente update(Cliente cliente){
-                if(cliente.getIdCliente() == null && !exist( cliente.getIdCliente() )){
+                if(!exist( cliente.getIdCliente() )){
                         throw new ClienteNotFoundException("Cliente com este id não existe " + cliente.getIdCliente());
                 }
                 return clienteRepository.save(cliente);

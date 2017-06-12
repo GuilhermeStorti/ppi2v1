@@ -37,7 +37,7 @@ public class MultaService {
 
         @Transactional(readOnly = false)
         public Multa save(Multa multa){
-                if(multa.getIdMulta() == null && exist( multa.getIdMulta() )){
+                if(exist( multa.getIdMulta() )){
                         throw new MultaAlreadyExistException("Multa com este id já existe " + multa.getIdMulta());
                 }
                 return multaRepository.save(multa);
@@ -45,7 +45,7 @@ public class MultaService {
 
         @Transactional(readOnly = false)
         public Multa update(Multa multa){
-                if(multa.getIdMulta() == null && !exist( multa.getIdMulta() )){
+                if(!exist( multa.getIdMulta() )){
                         throw new MultaNotFoundException("Multa com este id não existe " + multa.getIdMulta());
                 }
                 return multaRepository.save(multa);

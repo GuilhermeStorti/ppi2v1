@@ -37,7 +37,7 @@ public class FuncionarioService {
 
         @Transactional(readOnly = false)
         public Funcionario save(Funcionario funcionario){
-                if(funcionario.getIdfuncionario() == null && exist( funcionario.getIdfuncionario() )){
+                if(exist( funcionario.getIdfuncionario() )){
                         throw new FuncionarioAlreadyExistException("Funcionario com este id já existe " + funcionario.getIdfuncionario());
                 }
                 return funcionarioRepository.save(funcionario);
@@ -45,7 +45,7 @@ public class FuncionarioService {
 
         @Transactional(readOnly = false)
         public Funcionario update(Funcionario funcionario){
-                if(funcionario.getIdfuncionario() == null && !exist( funcionario.getIdfuncionario() )){
+                if(!exist( funcionario.getIdfuncionario() )){
                         throw new FuncionarioNotFoundException("Funcionario com este id não existe " + funcionario.getIdfuncionario());
                 }
                 return funcionarioRepository.save(funcionario);

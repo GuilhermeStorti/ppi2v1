@@ -1,88 +1,32 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.unitri.ppi.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
-import java.io.Serializable;
-import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import javax.persistence.*;
 
 /**
- *
- * @author guilherme
+ * Created by guilhermeplasma on 12/06/17.
  */
 @Entity
-@Table(name = "cliente")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c")
-    , @NamedQuery(name = "Cliente.findByIdCliente", query = "SELECT c FROM Cliente c WHERE c.idCliente = :idCliente")
-    , @NamedQuery(name = "Cliente.findByCnh", query = "SELECT c FROM Cliente c WHERE c.cnh = :cnh")
-    , @NamedQuery(name = "Cliente.findByCpf", query = "SELECT c FROM Cliente c WHERE c.cpf = :cpf")
-    , @NamedQuery(name = "Cliente.findByNome", query = "SELECT c FROM Cliente c WHERE c.nome = :nome")
-    , @NamedQuery(name = "Cliente.findBySituacao", query = "SELECT c FROM Cliente c WHERE c.situacao = :situacao")
-    , @NamedQuery(name = "Cliente.findByTelefone", query = "SELECT c FROM Cliente c WHERE c.telefone = :telefone")})
-public class Cliente implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id_cliente")
-    private Integer idCliente;
-    @Column(name = "cnh")
+@Table(name = "cliente", schema = "locacao", catalog = "")
+public class Cliente {
+    private int idCliente;
     private String cnh;
-    @Column(name = "cpf")
     private String cpf;
-    @Basic(optional = false)
-    @Column(name = "nome")
     private String nome;
-    @Basic(optional = false)
-    @Column(name = "situacao")
-    private Character situacao;
-    @Column(name = "telefone")
+    private String situacao;
     private String telefone;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCliente")
-    @JsonBackReference
-    private List<Locacao> locacaoList;
 
-    public Cliente() {
-    }
-
-    public Cliente(Integer idCliente) {
-        this.idCliente = idCliente;
-    }
-
-    public Cliente(Integer idCliente, String nome, Character situacao) {
-        this.idCliente = idCliente;
-        this.nome = nome;
-        this.situacao = situacao;
-    }
-
-    public Integer getIdCliente() {
+    @Id
+    @Column(name = "id_cliente")
+    public int getIdCliente() {
         return idCliente;
     }
 
-    public void setIdCliente(Integer idCliente) {
+    public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
     }
 
+    @Basic
+    @Column(name = "cnh")
     public String getCnh() {
         return cnh;
     }
@@ -91,6 +35,8 @@ public class Cliente implements Serializable {
         this.cnh = cnh;
     }
 
+    @Basic
+    @Column(name = "cpf")
     public String getCpf() {
         return cpf;
     }
@@ -99,6 +45,8 @@ public class Cliente implements Serializable {
         this.cpf = cpf;
     }
 
+    @Basic
+    @Column(name = "nome")
     public String getNome() {
         return nome;
     }
@@ -107,14 +55,18 @@ public class Cliente implements Serializable {
         this.nome = nome;
     }
 
-    public Character getSituacao() {
+    @Basic
+    @Column(name = "situacao")
+    public String getSituacao() {
         return situacao;
     }
 
-    public void setSituacao(Character situacao) {
+    public void setSituacao(String situacao) {
         this.situacao = situacao;
     }
 
+    @Basic
+    @Column(name = "telefone")
     public String getTelefone() {
         return telefone;
     }
@@ -123,38 +75,31 @@ public class Cliente implements Serializable {
         this.telefone = telefone;
     }
 
-    @XmlTransient
-    public List<Locacao> getLocacaoList() {
-        return locacaoList;
-    }
-
-    public void setLocacaoList(List<Locacao> locacaoList) {
-        this.locacaoList = locacaoList;
-    }
-
     @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idCliente != null ? idCliente.hashCode() : 0);
-        return hash;
-    }
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Cliente)) {
-            return false;
-        }
-        Cliente other = (Cliente) object;
-        if ((this.idCliente == null && other.idCliente != null) || (this.idCliente != null && !this.idCliente.equals(other.idCliente))) {
-            return false;
-        }
+        Cliente that = (Cliente) o;
+
+        if (idCliente != that.idCliente) return false;
+        if (cnh != null ? !cnh.equals(that.cnh) : that.cnh != null) return false;
+        if (cpf != null ? !cpf.equals(that.cpf) : that.cpf != null) return false;
+        if (nome != null ? !nome.equals(that.nome) : that.nome != null) return false;
+        if (situacao != null ? !situacao.equals(that.situacao) : that.situacao != null) return false;
+        if (telefone != null ? !telefone.equals(that.telefone) : that.telefone != null) return false;
+
         return true;
     }
 
     @Override
-    public String toString() {
-        return "com.unitri.ppi.domain.Cliente[ idCliente=" + idCliente + " ]";
+    public int hashCode() {
+        int result = idCliente;
+        result = 31 * result + (cnh != null ? cnh.hashCode() : 0);
+        result = 31 * result + (cpf != null ? cpf.hashCode() : 0);
+        result = 31 * result + (nome != null ? nome.hashCode() : 0);
+        result = 31 * result + (situacao != null ? situacao.hashCode() : 0);
+        result = 31 * result + (telefone != null ? telefone.hashCode() : 0);
+        return result;
     }
-    
 }

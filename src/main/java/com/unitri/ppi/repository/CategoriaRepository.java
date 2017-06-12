@@ -1,6 +1,5 @@
 package com.unitri.ppi.repository;
 
-import com.unitri.ppi.domain.Avaria;
 import com.unitri.ppi.domain.Categoria;
 import org.springframework.data.jpa.repository.JpaRepository;
 

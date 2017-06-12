@@ -37,7 +37,7 @@ public class AvariaService {
 
         @Transactional(readOnly = false)
         public Avaria save(Avaria avaria){
-                if(avaria.getIdAvaria() == null && exist( avaria.getIdAvaria() )){
+                if(exist( avaria.getIdAvaria() )){
                         throw new AvariaAlreadyExistException("Avaria com este id já existe " + avaria.getIdAvaria());
                 }
                 return avariaRepository.save(avaria);
@@ -45,7 +45,7 @@ public class AvariaService {
 
         @Transactional(readOnly = false)
         public Avaria update(Avaria avaria){
-                if(avaria.getIdAvaria() == null && !exist( avaria.getIdAvaria() )){
+                if(!exist( avaria.getIdAvaria() )){
                         throw new AvariaNotFoundException("Avaria com este id não existe " + avaria.getIdAvaria());
                 }
                 return avariaRepository.save(avaria);

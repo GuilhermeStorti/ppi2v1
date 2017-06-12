@@ -37,7 +37,7 @@ public class CategoriaService {
 
         @Transactional(readOnly = false)
         public Categoria save(Categoria categoria){
-                if(categoria.getIdCategoria() == null && exist( categoria.getIdCategoria() )){
+                if(exist( categoria.getIdCategoria() )){
                         throw new CategoriaAlreadyExistException("Categoria com este id já existe " + categoria.getIdCategoria());
                 }
                 return categoriaRepository.save(categoria);
@@ -45,7 +45,7 @@ public class CategoriaService {
 
         @Transactional(readOnly = false)
         public Categoria update(Categoria categoria){
-                if(categoria.getIdCategoria() == null && !exist( categoria.getIdCategoria() )){
+                if(!exist( categoria.getIdCategoria() )){
                         throw new CategoriaNotFoundException("Categoria com este id não existe " + categoria.getIdCategoria());
                 }
                 return categoriaRepository.save(categoria);

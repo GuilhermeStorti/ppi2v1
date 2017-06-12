@@ -1,6 +1,5 @@
 package com.unitri.ppi.handler;
 
-import com.unitri.ppi.domain.Funcionario;
 import com.unitri.ppi.exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,6 +1,5 @@
 package com.unitri.ppi.repository;
 
-import com.unitri.ppi.domain.Funcionario;
 import com.unitri.ppi.domain.Locacao;
 import org.springframework.data.jpa.repository.JpaRepository;
 

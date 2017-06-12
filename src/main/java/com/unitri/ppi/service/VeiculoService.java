@@ -37,7 +37,7 @@ public class VeiculoService {
 
         @Transactional(readOnly = false)
         public Veiculo save(Veiculo veiculo){
-                if(veiculo.getIdVeiculo() == null && exist( veiculo.getIdVeiculo() )){
+                if(exist( veiculo.getIdVeiculo() )){
                         throw new VeiculoAlreadyExistException("Veiculo com este id já existe " + veiculo.getIdVeiculo());
                 }
                 return veiculoRepository.save(veiculo);
@@ -45,7 +45,7 @@ public class VeiculoService {
 
         @Transactional(readOnly = false)
         public Veiculo update(Veiculo veiculo){
-                if(veiculo.getIdVeiculo() == null && !exist( veiculo.getIdVeiculo() )){
+                if(!exist( veiculo.getIdVeiculo() )){
                         throw new VeiculoNotFoundException("Veiculo com este id não existe " + veiculo.getIdVeiculo());
                 }
                 return veiculoRepository.save(veiculo);

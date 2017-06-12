@@ -1,106 +1,34 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.unitri.ppi.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
-import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import javax.persistence.*;
+import java.sql.Date;
 
 /**
- *
- * @author guilherme
+ * Created by guilhermeplasma on 12/06/17.
  */
 @Entity
-@Table(name = "funcionario")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Funcionario.findAll", query = "SELECT f FROM Funcionario f")
-    , @NamedQuery(name = "Funcionario.findByIdfuncionario", query = "SELECT f FROM Funcionario f WHERE f.idfuncionario = :idfuncionario")
-    , @NamedQuery(name = "Funcionario.findByCpf", query = "SELECT f FROM Funcionario f WHERE f.cpf = :cpf")
-    , @NamedQuery(name = "Funcionario.findByDataNascimento", query = "SELECT f FROM Funcionario f WHERE f.dataNascimento = :dataNascimento")
-    , @NamedQuery(name = "Funcionario.findByMatricula", query = "SELECT f FROM Funcionario f WHERE f.matricula = :matricula")
-    , @NamedQuery(name = "Funcionario.findByNome", query = "SELECT f FROM Funcionario f WHERE f.nome = :nome")
-    , @NamedQuery(name = "Funcionario.findBySenha", query = "SELECT f FROM Funcionario f WHERE f.senha = :senha")
-    , @NamedQuery(name = "Funcionario.findByUsuario", query = "SELECT f FROM Funcionario f WHERE f.usuario = :usuario")})
-public class Funcionario implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "idfuncionario")
-    private Integer idfuncionario;
-    @Basic(optional = false)
-    @Column(name = "cpf")
+@Table(name = "funcionario", schema = "locacao", catalog = "")
+public class Funcionario {
+    private int idfuncionario;
     private String cpf;
-    @Basic(optional = false)
-    @Column(name = "data_nascimento")
-    @Temporal(TemporalType.DATE)
     private Date dataNascimento;
-    @Basic(optional = false)
-    @Column(name = "matricula")
     private String matricula;
-    @Basic(optional = false)
-    @Column(name = "nome")
     private String nome;
-    @Basic(optional = false)
-    @Column(name = "senha")
     private String senha;
-    @Basic(optional = false)
-    @Column(name = "usuario")
     private String usuario;
-    @OneToMany(mappedBy = "idFuncionarioRec")
-    @JsonBackReference
-    private List<Locacao> locacaoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFuncionarioCad")
-    @JsonBackReference
-    private List<Locacao> locacaoList1;
 
-    public Funcionario() {
-    }
-
-    public Funcionario(Integer idfuncionario) {
-        this.idfuncionario = idfuncionario;
-    }
-
-    public Funcionario(Integer idfuncionario, String cpf, Date dataNascimento, String matricula, String nome, String senha, String usuario) {
-        this.idfuncionario = idfuncionario;
-        this.cpf = cpf;
-        this.dataNascimento = dataNascimento;
-        this.matricula = matricula;
-        this.nome = nome;
-        this.senha = senha;
-        this.usuario = usuario;
-    }
-
-    public Integer getIdfuncionario() {
+    @Id
+    @Column(name = "idfuncionario")
+    public int getIdfuncionario() {
         return idfuncionario;
     }
 
-    public void setIdfuncionario(Integer idfuncionario) {
+    public void setIdfuncionario(int idfuncionario) {
         this.idfuncionario = idfuncionario;
     }
 
+    @Basic
+    @Column(name = "cpf")
     public String getCpf() {
         return cpf;
     }
@@ -109,6 +37,8 @@ public class Funcionario implements Serializable {
         this.cpf = cpf;
     }
 
+    @Basic
+    @Column(name = "data_nascimento")
     public Date getDataNascimento() {
         return dataNascimento;
     }
@@ -117,6 +47,8 @@ public class Funcionario implements Serializable {
         this.dataNascimento = dataNascimento;
     }
 
+    @Basic
+    @Column(name = "matricula")
     public String getMatricula() {
         return matricula;
     }
@@ -125,6 +57,8 @@ public class Funcionario implements Serializable {
         this.matricula = matricula;
     }
 
+    @Basic
+    @Column(name = "nome")
     public String getNome() {
         return nome;
     }
@@ -133,6 +67,8 @@ public class Funcionario implements Serializable {
         this.nome = nome;
     }
 
+    @Basic
+    @Column(name = "senha")
     public String getSenha() {
         return senha;
     }
@@ -141,6 +77,8 @@ public class Funcionario implements Serializable {
         this.senha = senha;
     }
 
+    @Basic
+    @Column(name = "usuario")
     public String getUsuario() {
         return usuario;
     }
@@ -149,47 +87,34 @@ public class Funcionario implements Serializable {
         this.usuario = usuario;
     }
 
-    @XmlTransient
-    public List<Locacao> getLocacaoList() {
-        return locacaoList;
-    }
-
-    public void setLocacaoList(List<Locacao> locacaoList) {
-        this.locacaoList = locacaoList;
-    }
-
-    @XmlTransient
-    public List<Locacao> getLocacaoList1() {
-        return locacaoList1;
-    }
-
-    public void setLocacaoList1(List<Locacao> locacaoList1) {
-        this.locacaoList1 = locacaoList1;
-    }
-
     @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idfuncionario != null ? idfuncionario.hashCode() : 0);
-        return hash;
-    }
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Funcionario)) {
+        Funcionario that = (Funcionario) o;
+
+        if (idfuncionario != that.idfuncionario) return false;
+        if (cpf != null ? !cpf.equals(that.cpf) : that.cpf != null) return false;
+        if (dataNascimento != null ? !dataNascimento.equals(that.dataNascimento) : that.dataNascimento != null)
             return false;
-        }
-        Funcionario other = (Funcionario) object;
-        if ((this.idfuncionario == null && other.idfuncionario != null) || (this.idfuncionario != null && !this.idfuncionario.equals(other.idfuncionario))) {
-            return false;
-        }
+        if (matricula != null ? !matricula.equals(that.matricula) : that.matricula != null) return false;
+        if (nome != null ? !nome.equals(that.nome) : that.nome != null) return false;
+        if (senha != null ? !senha.equals(that.senha) : that.senha != null) return false;
+        if (usuario != null ? !usuario.equals(that.usuario) : that.usuario != null) return false;
+
         return true;
     }
 
     @Override
-    public String toString() {
-        return "com.unitri.ppi.domain.Funcionario[ idfuncionario=" + idfuncionario + " ]";
+    public int hashCode() {
+        int result = idfuncionario;
+        result = 31 * result + (cpf != null ? cpf.hashCode() : 0);
+        result = 31 * result + (dataNascimento != null ? dataNascimento.hashCode() : 0);
+        result = 31 * result + (matricula != null ? matricula.hashCode() : 0);
+        result = 31 * result + (nome != null ? nome.hashCode() : 0);
+        result = 31 * result + (senha != null ? senha.hashCode() : 0);
+        result = 31 * result + (usuario != null ? usuario.hashCode() : 0);
+        return result;
     }
-    
 }

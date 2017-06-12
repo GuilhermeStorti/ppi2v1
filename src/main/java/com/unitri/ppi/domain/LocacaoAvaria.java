@@ -1,17 +1,19 @@
 package com.unitri.ppi.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by guilhermeplasma on 12/06/17.
  */
 @Entity
-@Table(name = "avaria", schema = "locacao", catalog = "")
-public class Avaria {
+@Table(name = "locacao_avaria", schema = "locacao", catalog = "")
+public class LocacaoAvaria implements Serializable{
     private int idAvaria;
-    private String descricao;
+    private int idLocacao;
 
     @Id
+    @Basic
     @Column(name = "id_avaria")
     public int getIdAvaria() {
         return idAvaria;
@@ -21,14 +23,15 @@ public class Avaria {
         this.idAvaria = idAvaria;
     }
 
+    @Id
     @Basic
-    @Column(name = "descricao")
-    public String getDescricao() {
-        return descricao;
+    @Column(name = "id_locacao")
+    public int getIdLocacao() {
+        return idLocacao;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setIdLocacao(int idLocacao) {
+        this.idLocacao = idLocacao;
     }
 
     @Override
@@ -36,10 +39,10 @@ public class Avaria {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Avaria that = (Avaria) o;
+        LocacaoAvaria that = (LocacaoAvaria) o;
 
         if (idAvaria != that.idAvaria) return false;
-        if (descricao != null ? !descricao.equals(that.descricao) : that.descricao != null) return false;
+        if (idLocacao != that.idLocacao) return false;
 
         return true;
     }
@@ -47,7 +50,7 @@ public class Avaria {
     @Override
     public int hashCode() {
         int result = idAvaria;
-        result = 31 * result + (descricao != null ? descricao.hashCode() : 0);
+        result = 31 * result + idLocacao;
         return result;
     }
 }

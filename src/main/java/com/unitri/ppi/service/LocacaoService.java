@@ -37,7 +37,7 @@ public class LocacaoService {
 
         @Transactional(readOnly = false)
         public Locacao save(Locacao locacao){
-                if(locacao.getIdLocacao() == null && exist( locacao.getIdLocacao() )){
+                if(exist( locacao.getIdLocacao() )){
                         throw new LocacaoAlreadyExistException("Locacao com este id já existe " + locacao.getIdLocacao());
                 }
                 return locacaoRepository.save(locacao);
@@ -45,7 +45,7 @@ public class LocacaoService {
 
         @Transactional(readOnly = false)
         public Locacao update(Locacao locacao){
-                if(locacao.getIdLocacao() == null && !exist( locacao.getIdLocacao() )){
+                if(!exist( locacao.getIdLocacao() )){
                         throw new LocacaoNotFoundException("Locacao com este id não existe " + locacao.getIdLocacao());
                 }
                 return locacaoRepository.save(locacao);

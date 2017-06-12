@@ -1,92 +1,33 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.unitri.ppi.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
-import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import javax.persistence.*;
+import java.sql.Date;
 
 /**
- *
- * @author guilherme
+ * Created by guilhermeplasma on 12/06/17.
  */
 @Entity
-@Table(name = "locacao")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Locacao.findAll", query = "SELECT l FROM Locacao l")
-    , @NamedQuery(name = "Locacao.findByIdLocacao", query = "SELECT l FROM Locacao l WHERE l.idLocacao = :idLocacao")
-    , @NamedQuery(name = "Locacao.findByDataLocacao", query = "SELECT l FROM Locacao l WHERE l.dataLocacao = :dataLocacao")})
-public class Locacao implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id_locacao")
-    private Integer idLocacao;
-    @Column(name = "data_locacao")
-    @Temporal(TemporalType.DATE)
+@Table(name = "locacao", schema = "locacao", catalog = "")
+public class Locacao {
+    private int idLocacao;
     private Date dataLocacao;
-    @ManyToMany(mappedBy = "locacaoList")
-    @JsonBackReference
-    private List<Multa> multaList;
-    @ManyToMany(mappedBy = "locacaoList")
-    @JsonBackReference
-    private List<Avaria> avariaList;
-    @JoinColumn(name = "id_funcionario_rec", referencedColumnName = "idfuncionario")
-    @ManyToOne
-    @JsonBackReference
-    private Funcionario idFuncionarioRec;
-    @JoinColumn(name = "id_veiculo", referencedColumnName = "id_veiculo")
-    @ManyToOne(optional = false)
-    @JsonBackReference
-    private Veiculo idVeiculo;
-    @JoinColumn(name = "id_funcionario_cad", referencedColumnName = "idfuncionario")
-    @ManyToOne(optional = false)
-    @JsonBackReference
-    private Funcionario idFuncionarioCad;
-    @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente")
-    @ManyToOne(optional = false)
-    @JsonBackReference
-    private Cliente idCliente;
+    private int idCliente;
+    private int idFuncionarioCad;
+    private Integer idFuncionarioRec;
+    private int idVeiculo;
 
-    public Locacao() {
-    }
-
-    public Locacao(Integer idLocacao) {
-        this.idLocacao = idLocacao;
-    }
-
-    public Integer getIdLocacao() {
+    @Id
+    @Column(name = "id_locacao")
+    public int getIdLocacao() {
         return idLocacao;
     }
 
-    public void setIdLocacao(Integer idLocacao) {
+    public void setIdLocacao(int idLocacao) {
         this.idLocacao = idLocacao;
     }
 
+    @Basic
+    @Column(name = "data_locacao")
     public Date getDataLocacao() {
         return dataLocacao;
     }
@@ -95,79 +36,72 @@ public class Locacao implements Serializable {
         this.dataLocacao = dataLocacao;
     }
 
-    @XmlTransient
-    public List<Multa> getMultaList() {
-        return multaList;
-    }
-
-    public void setMultaList(List<Multa> multaList) {
-        this.multaList = multaList;
-    }
-
-    @XmlTransient
-    public List<Avaria> getAvariaList() {
-        return avariaList;
-    }
-
-    public void setAvariaList(List<Avaria> avariaList) {
-        this.avariaList = avariaList;
-    }
-
-    public Funcionario getIdFuncionarioRec() {
-        return idFuncionarioRec;
-    }
-
-    public void setIdFuncionarioRec(Funcionario idFuncionarioRec) {
-        this.idFuncionarioRec = idFuncionarioRec;
-    }
-
-    public Veiculo getIdVeiculo() {
-        return idVeiculo;
-    }
-
-    public void setIdVeiculo(Veiculo idVeiculo) {
-        this.idVeiculo = idVeiculo;
-    }
-
-    public Funcionario getIdFuncionarioCad() {
-        return idFuncionarioCad;
-    }
-
-    public void setIdFuncionarioCad(Funcionario idFuncionarioCad) {
-        this.idFuncionarioCad = idFuncionarioCad;
-    }
-
-    public Cliente getIdCliente() {
+    @Basic
+    @Column(name = "id_cliente")
+    public int getIdCliente() {
         return idCliente;
     }
 
-    public void setIdCliente(Cliente idCliente) {
+    public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idLocacao != null ? idLocacao.hashCode() : 0);
-        return hash;
+    @Basic
+    @Column(name = "id_funcionario_cad")
+    public int getIdFuncionarioCad() {
+        return idFuncionarioCad;
+    }
+
+    public void setIdFuncionarioCad(int idFuncionarioCad) {
+        this.idFuncionarioCad = idFuncionarioCad;
+    }
+
+    @Basic
+    @Column(name = "id_funcionario_rec")
+    public Integer getIdFuncionarioRec() {
+        return idFuncionarioRec;
+    }
+
+    public void setIdFuncionarioRec(Integer idFuncionarioRec) {
+        this.idFuncionarioRec = idFuncionarioRec;
+    }
+
+    @Basic
+    @Column(name = "id_veiculo")
+    public int getIdVeiculo() {
+        return idVeiculo;
+    }
+
+    public void setIdVeiculo(int idVeiculo) {
+        this.idVeiculo = idVeiculo;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Locacao)) {
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Locacao that = (Locacao) o;
+
+        if (idLocacao != that.idLocacao) return false;
+        if (idCliente != that.idCliente) return false;
+        if (idFuncionarioCad != that.idFuncionarioCad) return false;
+        if (idVeiculo != that.idVeiculo) return false;
+        if (dataLocacao != null ? !dataLocacao.equals(that.dataLocacao) : that.dataLocacao != null) return false;
+        if (idFuncionarioRec != null ? !idFuncionarioRec.equals(that.idFuncionarioRec) : that.idFuncionarioRec != null)
             return false;
-        }
-        Locacao other = (Locacao) object;
-        if ((this.idLocacao == null && other.idLocacao != null) || (this.idLocacao != null && !this.idLocacao.equals(other.idLocacao))) {
-            return false;
-        }
+
         return true;
     }
 
     @Override
-    public String toString() {
-        return "com.unitri.ppi.domain.Locacao[ idLocacao=" + idLocacao + " ]";
+    public int hashCode() {
+        int result = idLocacao;
+        result = 31 * result + (dataLocacao != null ? dataLocacao.hashCode() : 0);
+        result = 31 * result + idCliente;
+        result = 31 * result + idFuncionarioCad;
+        result = 31 * result + (idFuncionarioRec != null ? idFuncionarioRec.hashCode() : 0);
+        result = 31 * result + idVeiculo;
+        return result;
     }
-    
 }
