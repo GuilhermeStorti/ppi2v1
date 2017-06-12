@@ -1,0 +1,122 @@
+<h1>Funcionarios</h1>
+
+<hr>
+
+<span class="col-lg-1"></span>
+
+<div class="col-lg-10">
+
+    <i ng-click="limpar()" class="fa fa-user-plus" style="font-size: 2em; margin-bottom: 10px;"
+       typeof="button" data-toggle="modal" data-target="#modalfuncionarioNovo"
+       data-toggle="tooltip" title="Adicionar"></i>
+
+    <table class="table table-striped" >
+        <tr>
+            <th>Id</th>
+            <th>Matricula</th>
+            <th>Nome</th>
+            <th>Usuario</th>
+            <th>CPF</th>
+            <th>Data de Nascimento</th>
+            <th>#</th>
+        </tr>
+        <tr data-ng-repeat="funcionario in funcionarios">
+            <td ng-click="seleciona(funcionario)">{{funcionario.idFuncionario}}</td>
+            <td ng-click="seleciona(funcionario)">{{funcionario.matricula}}</td>
+            <td ng-click="seleciona(funcionario)">{{funcionario.nome}}</td>
+            <td ng-click="seleciona(funcionario)">{{funcionario.usuario}}</td>
+            <td ng-click="seleciona(funcionario)">{{funcionario.cpf}}</td>
+            <td ng-click="seleciona(funcionario)">{{funcionario.dataNascimento}}</td>
+            <td ng-click="seleciona(funcionario)">
+                <i typeof="button" data-toggle="modal" data-target="#modalfuncionario" class="fa fa-pencil"
+                   data-toggle="tooltip" title="Editar"></i>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<!-- Modal Novo-->
+<div class="modal fade" id="modalfuncionarioNovo" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">funcionario</h4>
+            </div>
+            <div class="modal-body">
+
+                <form class="form-group" style="text-align: left" id="funcionarioForm">
+
+                    <label for="matriculaN">Matricula</label>
+                    <input id="matriculaN" type="text" data-ng-model="funcionario.matricula"
+                           class="form-control" ng-required="true">
+
+                    <label for="nomeN">Nome</label>
+                    <input id="nomeN" type="text" data-ng-model="funcionario.nome"
+                           class="form-control" ng-required="true">
+
+                    <label for="usuarioN">Usuario</label>
+                    <input id="usuarioN" type="text" data-ng-model="funcionario.usuario" class="form-control">
+
+                    <label for="senhaN">Senha</label>
+                    <input id="senhaN" type="text" data-ng-model="funcionario.senha" class="form-control">
+
+                    <label for="cpfN">CPF</label>
+                    <input id="cpfN" type="text" data-ng-model="funcionario.cpf" class="form-control cpf"/>
+
+                    <label for="dtNascimentoN">Data de Nascimento</label>
+                    <input id="dtNascimentoN" type="text" data-ng-model="funcionario.dataNascimento" class="form-control"/>
+
+
+                    <div class="btn-group" style="margin-top: 25px; margin-left: 50%; width: 30px; left: -30px;">
+                        <button data-ng-click="salvar()" class="btn btn-primary" data-dismiss="modal">Salvar</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Modal editar-->
+<div class="modal fade" id="modalfuncionario" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Funcionario</h4>
+            </div>
+            <div class="modal-body">
+
+                <form class="form-group" style="text-align: left">
+
+                    <label for="nomeN">Nome</label>
+                    <input id="nomeN" type="text" data-ng-model="funcionario.nome"
+                           class="form-control" ng-required="true">
+
+                    <label for="usuarioN">Usuario</label>
+                    <input id="usuarioN" type="text" data-ng-model="funcionario.usuario" class="form-control">
+
+                    <label for="cpfN">CPF</label>
+                    <input id="cpfN" type="text" data-ng-model="funcionario.cpf" class="form-control cpf"/>
+
+                    <label for="dtNascimentoN">Data de Nascimento</label>
+                    <input id="dtNascimentoN" type="text" data-ng-model="funcionario.dataNascimento" class="form-control"/>
+
+                    <div class="btn-group" style="margin-top: 25px; margin-left: 50%; width: 200px; left: -100px;">
+                        <button data-ng-click="novo()" class="btn btn-primary" data-dismiss="modal">Novo</button>
+                        <button data-ng-click="editar()" class="btn btn-primary" data-dismiss="modal">Salvar</button>
+                        <button data-ng-click="deletar()" class="btn btn-primary" data-dismiss="modal">Deletar</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>

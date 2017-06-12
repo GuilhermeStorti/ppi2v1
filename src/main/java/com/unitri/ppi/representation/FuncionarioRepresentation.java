@@ -72,7 +72,7 @@ public class FuncionarioRepresentation extends ResourceSupport {
         funcionario.setUsuario(representation.getUsuario());
         funcionario.setSenha(representation.getSenha());
         funcionario.setCpf(representation.getCpf());
-        funcionario.setDataNascimento(funcionario.getDataNascimento());
+        funcionario.setDataNascimento(representation.getDataNascimento());
         funcionario.setLocacaoList(funcionario.getLocacaoList());
 
         return funcionario;

@@ -1,0 +1,112 @@
+<h1>Veiculos</h1>
+
+<hr>
+
+<span class="col-lg-1"></span>
+
+<div class="col-lg-10">
+
+    <i ng-click="limpar()" class="fa fa-user-plus" style="font-size: 2em; margin-bottom: 10px;"
+       typeof="button" data-toggle="modal" data-target="#modalveiculoNovo"
+       data-toggle="tooltip" title="Adicionar"></i>
+
+    <table class="table table-striped" >
+        <tr>
+            <th>Id</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Categoria</th>
+            <th>Placa</th>
+            <th>Preço</th>
+            <th>#</th>
+        </tr>
+        <tr data-ng-repeat="veiculo in veiculos">
+            <td ng-click="seleciona(veiculo)">{{veiculo.idVeiculo}}</td>
+            <td ng-click="seleciona(veiculo)">{{veiculo.marca}}</td>
+            <td ng-click="seleciona(veiculo)">{{veiculo.modelo}}</td>
+            <td ng-click="seleciona(veiculo)">{{veiculo.idCategoria.descricao}}</td>
+            <td ng-click="seleciona(veiculo)">{{veiculo.placa}}</td>
+            <td ng-click="seleciona(veiculo)">{{veiculo.idCategoria.preco}}</td>
+            <td ng-click="seleciona(veiculo)">
+                <i typeof="button" data-toggle="modal" data-target="#modalveiculo" class="fa fa-pencil"
+                   data-toggle="tooltip" title="Editar"></i>
+            </td>
+            <!--<td ng-click="seleciona(veiculo)"><i class="fa fa-pencil"></i></td>-->
+        </tr>
+    </table>
+</div>
+
+<div class="modal fade" id="modalveiculoNovo" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Veiculo</h4>
+            </div>
+            <div class="modal-body">
+
+                <form class="form-group" style="text-align: left" id="veiculoForm">
+                    <label for="marcaN">Marca</label>
+                    <input id="marcaN" type="text" data-ng-model="veiculo.marca"
+                           class="form-control" ng-required="true">
+
+                    <label for="modeloN">Modelo</label>
+                    <input id="modeloN" type="text" data-ng-model="veiculo.modelo" class="form-control">
+
+                    <label for="placaN">Placa</label>
+                    <input id="placaN" type="text" data-ng-model="veiculo.placa" class="form-control"/>
+
+                    <label for="cnhN">Categoria</label>
+                    <input id="cnhN" type="text" data-ng-model="veiculo.idCategoria.idCategoria" class="form-control"/>
+
+                    <div class="btn-group" style="margin-top: 25px; margin-left: 50%; width: 30px; left: -30px;">
+                        <button data-ng-click="salvar()" class="btn btn-primary" data-dismiss="modal">Salvar</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Modal Editar Deletar-->
+<div class="modal fade" id="modalveiculo" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Veiculo</h4>
+            </div>
+            <div class="modal-body">
+
+                <form class="form-group" style="text-align: left">
+                    <label for="marcaE">Marca</label>
+                    <input id="marcaE" type="text" data-ng-model="veiculo.marca"
+                           class="form-control" ng-required="true">
+
+                    <label for="modeloE">Modelo</label>
+                    <input id="modeloE" type="text" data-ng-model="veiculo.modelo" class="form-control">
+
+                    <label for="placaE">Placa</label>
+                    <input id="placaE" type="text" data-ng-model="veiculo.placa" class="form-control"/>
+
+                    <label for="cnhE">Categoria</label>
+                    <input id="cnhE" type="text" data-ng-model="veiculo.idCategoria.idCategoria" class="form-control"/>
+
+                    <div class="btn-group" style="margin-top: 25px; margin-left: 50%; width: 200px; left: -100px;">
+                        <button data-ng-click="novo()" class="btn btn-primary" data-dismiss="modal">Novo</button>
+                        <button data-ng-click="editar()" class="btn btn-primary" data-dismiss="modal">Salvar</button>
+                        <button data-ng-click="deletar()" class="btn btn-primary" data-dismiss="modal">Deletar</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>
