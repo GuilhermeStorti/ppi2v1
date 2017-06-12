@@ -47,18 +47,14 @@
             <div class="modal-body">
 
                 <form class="form-group" style="text-align: left" id="multaForm">
+                    <label for="descricaoE">Descricao</label>
+                    <input id="descricaoE" type="text" data-ng-model="multa.descricao" class="form-control">
 
-                    <label for="descricaoN">Descricao</label>
-                    <input id="descricaoN" type="text" data-ng-model="multa.descricao" class="form-control">
+                    <label for="valorE">Valor</label>
+                    <input id="valorE" type="text" data-ng-model="multa.valor" class="form-control"/>
 
-                    <label for="valorN">Valor</label>
-                    <input id="valorN" type="text" data-ng-model="multa.valor" class="form-control"/>
-
-                    <label for="modeloN">Modelo</label>
-                    <input id="modeloN" type="text" data-ng-model="multa.idVeiculo.modelo" class="form-control"/>
-
-                    <label for="situacaoN">Placa</label>
-                    <input id="situacaoN" type="text" data-ng-model="multa.idVeiculo.placa" class="form-control"/>
+                    <label for="modeloE">ID Veiculo</label>
+                    <input id="modeloE" type="text" data-ng-model="multa.idVeiculo.idVeiculo" class="form-control"/>
 
                     <div class="btn-group" style="margin-top: 25px; margin-left: 50%; width: 30px; left: -30px;">
                         <button data-ng-click="salvar()" class="btn btn-primary" data-dismiss="modal">Salvar</button>
@@ -79,7 +75,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">multa</h4>
+                <h4 class="modal-title">Multa</h4>
             </div>
             <div class="modal-body">
 
@@ -91,11 +87,8 @@
                     <label for="valorE">Valor</label>
                     <input id="valorE" type="text" data-ng-model="multa.valor" class="form-control"/>
 
-                    <label for="modeloE">Modelo</label>
-                    <input id="modeloE" type="text" data-ng-model="multa.idVeiculo.modelo" class="form-control"/>
-
-                    <label for="situacaoE">Placa</label>
-                    <input id="situacaoE" type="text" data-ng-model="multa.idVeiculo.placa" class="form-control"/>
+                    <label for="modeloE">ID Veiculo</label>
+                    <input id="modeloE" type="text" data-ng-model="multa.idVeiculo.idVeiculo" class="form-control"/>
 
 
                     <div class="btn-group" style="margin-top: 25px; margin-left: 50%; width: 200px; left: -100px;">
