@@ -1,0 +1,52 @@
+<meta charset="UTF-8">
+
+<div>
+	<h2 class="sub-header">Locações por mês</h2>
+	<br>
+
+	<label for="mes">Selecione um mês:</label>
+	
+	<select id="mes" class="form-control" ng-change="pesquisar(mes)" ng-model="mes">
+		<option value="1" label="Janeiro">
+		<option value="2" label="Fevereiro">
+		<option value="3" label="Março">
+		<option value="4" label="Abril">
+		<option value="5" label="Maio">
+		<option value="6" label="Junho">
+		<option value="7" label="Julho">
+		<option value="8" label="Agosto">
+		<option value="9" label="Setembro">
+		<option value="10" label="Outubro">
+		<option value="11" label="Novembro">
+		<option value="12" label="Dezembro">
+	</select>
+	
+	<br>
+	
+	<div ng-hide="esconder">
+		<h4 class="sub-header">Locações</h4>
+		
+		<div class="table-responsive">
+		<table class="table table-striped table-hover table-bordered table-condensed">
+			<tr>
+				<th><a href="" ng-click="ordenar('identifier')">Id</a></th>
+				<th><a href="" ng-click="ordenar('data')">Data</a></th>
+				<th><a href="" ng-click="ordenar('hora')">Hora</a></th>
+				<th><a href="" ng-click="ordenar('veiculoRepresentation.modelo')">Veículo</a></th>
+				<th><a href="" ng-click="ordenar('clienteRepresentation.nome')">Cliente</a></th>
+				<th><a href="" ng-click="ordenar('funcionarioRepresentationCad.nome')">Funcionário Cadastro</a></th>
+				<th><a href="" ng-click="ordenar('funcionarioRepresentationRec.nome')">Funcionário Recebimento</a></th>
+			</tr>
+			<tr ng-repeat="locacao in locacoes | orderBy:ordernarPor">
+				<td>{{ locacao.identifier }}</td>
+				<td>{{ locacao.data }}</td>
+				<td>{{ locacao.hora }}</td>
+				<td>{{ locacao.veiculoRepresentation.modelo }}</td>
+				<td>{{ locacao.clienteRepresentation.nome }}</td>
+				<td>{{ locacao.funcionarioRepresentationCad.nome }}</td>
+				<td>{{ locacao.funcionarioRepresentationRec.nome }}</td>
+			</tr>
+		</table>
+	</div>
+	</div>
+</div>

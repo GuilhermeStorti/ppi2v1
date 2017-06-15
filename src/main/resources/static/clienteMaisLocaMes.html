@@ -1,0 +1,48 @@
+<meta charset="UTF-8">
+
+<div>
+	<h2 class="sub-header">Cliente que mais loca veículo no mês</h2>
+	<br>
+
+	<label for="mes">Selecione um mês:</label>
+	
+	<select id="mes" class="form-control" ng-change="pesquisar(mes)" ng-model="mes">
+		<option value="1" label="Janeiro">
+		<option value="2" label="Fevereiro">
+		<option value="3" label="Março">
+		<option value="4" label="Abril">
+		<option value="5" label="Maio">
+		<option value="6" label="Junho">
+		<option value="7" label="Julho">
+		<option value="8" label="Agosto">
+		<option value="9" label="Setembro">
+		<option value="10" label="Outubro">
+		<option value="11" label="Novembro">
+		<option value="12" label="Dezembro">
+	</select>
+	
+	<br>
+	
+	<div ng-hide="esconder">
+		<h4 class="sub-header">Cliente</h4>
+		
+		<div class="table-responsive">
+		<table class="table table-striped table-hover table-bordered table-condensed">
+			<tr>
+				<th><a href="">Id</a></th>
+				<th><a href="">CPF</a></th>
+				<th><a href="">Nome</a></th>
+				<th><a href="">Endereço</a></th>
+				<th><a href="">Telefone</a></th>
+			</tr>
+			<tr>
+				<td>{{ cliente.identifier }}</td>
+				<td>{{ cliente.cpf }}</td>
+				<td>{{ cliente.nome }}</td>
+				<td>{{ cliente.endereco }}</td>
+				<td>{{ cliente.telefone }}</td>
+			</tr>
+		</table>
+	</div>
+	</div>
+</div>
