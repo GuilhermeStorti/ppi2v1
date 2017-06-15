@@ -1,0 +1,16 @@
+angular.module('app.controllers', 
+		[ 'avariaControllers', 
+		  'multaControllers', 
+		  'categoriaControllers', 
+		  'funcionarioControllers', 
+		  'clienteControllers',
+		  'veiculoControllers',
+		  'locacaoControllers',
+		  'veiculosPorCategoriaControllers',
+		  'locacoesPorFuncionarioControllers',
+		  'locacoesPorVeiculoControllers',
+		  'locacoesPorMesControllers',
+		  'clienteMaisLocaMesControllers',
+		  'multasPorLocacaoControllers',
+		  'avariasPorLocacaoControllers'
+		  ]);

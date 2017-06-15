@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  	<title>Locação de veículos</title>
+  	<meta charset="UTF-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
+    
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  	
+  	<link rel="stylesheet" type="text/css" href="css/principal.css">
+  	<link rel="stylesheet" type="text/css" href="css/estilo.css">
+    
+    <script src="js/controller/angular-locale_pt-br.js"></script>
+    
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/controller/avariaController.js"></script>
+    <script src="js/controller/multaController.js"></script>
+    <script src="js/controller/categoriaController.js"></script>
+    <script src="js/controller/funcionarioController.js"></script>
+    <script src="js/controller/clienteController.js"></script>
+    <script src="js/controller/veiculoController.js"></script>
+    <script src="js/controller/locacaoController.js"></script>
+    <script src="js/controller/veiculosPorCategoriaController.js"></script>
+    <script src="js/controller/locacoesPorFuncionarioController.js"></script>
+    <script src="js/controller/locacoesPorVeiculoController.js"></script>
+    <script src="js/controller/locacoesPorMesController.js"></script>
+    <script src="js/controller/clienteMaisLocaMesController.js"></script>
+    <script src="js/controller/avariasPorLocacaoController.js"></script>
+    <script src="js/controller/multasPorLocacaoController.js"></script>
+ 
+</head>
+<body ng-app="app">
+
+	<!-- NAVEGAÇÃO -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" ui-sref="home0">Locação de Veículos</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+	    	<li><a ui-sref="home">Home</a></li>
+	    	<li><a ui-sref="sobre">Sobre</a></li>
+	        <li><a ui-sref="avaria">Avarias</a></li>
+	        <li><a ui-sref="multa">Multas</a></li>
+	        <li><a ui-sref="categoria">Categorias</a></li>
+	        <li><a ui-sref="funcionario">Funcionários</a></li>
+	        <li><a ui-sref="cliente">Clientes</a></li>
+	        <li><a ui-sref="veiculo">Veículos</a></li>
+	        <li><a ui-sref="locacao">Locações</a></li>
+	      </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+      
+      	<!-- MENU LATERAL -->
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href="#">Pesquisas<span class="sr-only">(current)</span></a></li>
+            <li><a ui-sref="veiculosPorCategoria">Veículos por categoria</a></li>
+            <li><a ui-sref="locacoesPorFuncionario">Locações por funcionário</a></li>
+            <li><a ui-sref="locacoesPorVeiculo">Locações por veículo</a></li>
+            <li><a ui-sref="locacoesPorMes">Locações por mês</a></li>
+            <li><a ui-sref="clienteMaisLocaMes">Cliente que mais loca no mês</a></li>
+            <li><a ui-sref="multasPorLocacao">Multas por locação</a></li>
+            <li><a ui-sref="avariasPorLocacao">Avarias por locação</a></li>
+          </ul>
+        </div>
+        
+        <!-- CONTEUDO PRINCIPAL -->
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <div class="container-fluid">
+		    <div ui-view></div>
+		  </div>
+        </div>
+        
+      </div>
+    </div>
+
+  <!-- RODAPÉ -->
+  <!-- <footer class="container-fluid text-center">
+    <p>Locação de veículos PPI2</p>
+  </footer> -->
+
+</body>
+</html>
