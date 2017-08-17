@@ -1,6 +1,6 @@
 angular.module("appLocadora").controller("avariaCtrl", function ($scope, $http) {
 
-    var url = "http://localhost:8080/ppi2v1/avaria";
+    var url = "http://localhost:8080/ppi2v1/avaria/";
 
     $scope.mostrar = function()	{
         $http.get(url).then(

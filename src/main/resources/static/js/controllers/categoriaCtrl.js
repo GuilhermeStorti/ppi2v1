@@ -1,6 +1,6 @@
 angular.module("appLocadora").controller("categoriaCtrl", function ($scope, $http) {
 
-    var url = "http://localhost:8080/ppi2v1/categoria";
+    var url = "http://localhost:8080/ppi2v1/categoria/";
 
     $scope.mostrar = function()	{
         $http.get(url).then(

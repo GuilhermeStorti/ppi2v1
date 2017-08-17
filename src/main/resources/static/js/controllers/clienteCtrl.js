@@ -1,6 +1,6 @@
 angular.module("appLocadora").controller("clienteCtrl", function ($scope, $http) {
 
-    var url = "http://localhost:8080/ppi2v1/cliente";
+    var url = "http://localhost:8080/ppi2v1/cliente/";
 
     $scope.mostrar = function()	{
         $http.get(url).then(
